@@ -1,29 +1,33 @@
 package hw.hello.member.service;
 
-import hw.hello.lecture.domain.MemberLecture;
 import hw.hello.lecture.service.LectureInfoResponse;
+import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
-import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import java.util.stream.Collectors;
 
 public class MemberInfoResponse {
 
     private long id;
     private String name;
     private int idNumber;
-    private String password;
     private String phoneNumber;
     private RoleType roleType;
-    private List<LectureInfoResponse> lectures;
+    private List<MyLectureInfoResponse> lectures;
 
     public MemberInfoResponse() {
+    }
+
+    public MemberInfoResponse(Member member) {
+        this.id = member.getId();
+        this.name = member.getName();
+        this.idNumber = member.getIdNumber();
+        this.phoneNumber = member.getPhoneNumber();
+        this.roleType = member.getRole();
+        this.lectures = member.getLectures()
+                .stream()
+                .map(MyLectureInfoResponse::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public long getId() {
@@ -38,10 +42,6 @@ public class MemberInfoResponse {
         return idNumber;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -50,7 +50,7 @@ public class MemberInfoResponse {
         return roleType;
     }
 
-    public List<LectureInfoResponse> getLectures() {
+    public List<MyLectureInfoResponse> getLectures() {
         return lectures;
     }
 }

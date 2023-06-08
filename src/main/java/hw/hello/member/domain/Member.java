@@ -1,8 +1,10 @@
 package hw.hello.member.domain;
 
+import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.domain.MemberLecture;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -93,5 +95,11 @@ public class Member {
 
     public boolean hasPassword(String password) {
         return this.password.equals(password);
+    }
+
+    public List<Lecture> getLectures() {
+        return memberLectures.stream()
+                .map(MemberLecture::getLecture)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

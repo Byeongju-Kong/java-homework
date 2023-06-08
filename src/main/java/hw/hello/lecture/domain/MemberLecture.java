@@ -30,4 +30,12 @@ public class MemberLecture {
         this.member = member;
         this.lecture = lecture;
     }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public Lecture getLecture() {
+        return lecture;
+    }
 }

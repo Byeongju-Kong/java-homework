@@ -2,6 +2,7 @@ package hw.hello.lecture.domain;
 
 import hw.hello.member.domain.Member;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -65,7 +66,9 @@ public class Lecture {
         return professor.getPhoneNumber();
     }
 
-    public List<MemberLecture> getStudents() {
-        return students;
+    public List<Member> getStudents() {
+        return students.stream()
+                .map(MemberLecture::getMember)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

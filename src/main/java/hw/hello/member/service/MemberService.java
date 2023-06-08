@@ -5,6 +5,7 @@ import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,10 +28,13 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public List<Member> findAll(Long memberId, String role) {
+    public List<MemberInfoResponse> findAll(Long memberId, String role) {
         validateAdmin(memberId);
         RoleType roleType = RoleType.from(role);
-        return memberRepository.findAllByRole(roleType);
+        return memberRepository.findAllByRole(roleType)
+                .stream()
+                .map(MemberInfoResponse::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateAdmin(Long memberId) {
