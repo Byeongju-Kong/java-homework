@@ -2,21 +2,44 @@ package hw.hello.lecture.domain;
 
 import hw.hello.member.domain.Member;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Lecture {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "lecture_id")
     private Long id;
-    private String professorName;
-    private String professorPhoneNumber;
-    private String name;
-    private int credit; //몇 학점짜리 수업인지
-    private List<Member> students;
 
-    public Lecture(Long id, String professorName, String professorPhoneNumber, String name, int credit,
-                   List<Member> students) {
+    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Member professor;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private int credit;
+
+    @OneToMany(mappedBy = "lecture")
+    private List<MemberLecture> students;
+
+    protected Lecture() {
+    }
+
+    public Lecture(Long id, Member professor, String name, int credit,
+                   List<MemberLecture> students) {
         this.id = id;
-        this.professorName = professorName;
-        this.professorPhoneNumber = professorPhoneNumber;
+        this.professor = professor;
         this.name = name;
         this.credit = credit;
         this.students = students;
@@ -27,7 +50,7 @@ public class Lecture {
     }
 
     public String getProfessorName() {
-        return professorName;
+        return professor.getName();
     }
 
     public String getName() {
@@ -38,11 +61,11 @@ public class Lecture {
         return credit;
     }
 
-    public Lecture setStudents(List<Member> students) {
-        return new Lecture(id, professorName, professorPhoneNumber, name, credit, students);
+    public String getProfessorPhoneNumber() {
+        return professor.getPhoneNumber();
     }
 
-    public List<Member> getStudents() {
+    public List<MemberLecture> getStudents() {
         return students;
     }
 }

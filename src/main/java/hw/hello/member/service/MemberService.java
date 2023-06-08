@@ -1,8 +1,9 @@
 package hw.hello.member.service;
 
 import hw.hello.exception.ForbiddenException;
-import hw.hello.member.dao.MemberDao;
 import hw.hello.member.domain.Member;
+import hw.hello.member.domain.RoleType;
+import hw.hello.member.repository.MemberRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,32 +11,31 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MemberService {
 
-    private final MemberDao memberDao;
+    private final MemberRepository memberRepository;
 
-    public MemberService(MemberDao memberDao) {
-        this.memberDao = memberDao;
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Transactional
     public void registerNewMember(Long memberId, MemberRegisterRequest memberRegisterRequest) {
         validateAdmin(memberId);
-        memberDao.save(
-                memberRegisterRequest.getIdNumber(),
-                memberRegisterRequest.getPassword(),
-                memberRegisterRequest.getName(),
-                memberRegisterRequest.getPhoneNumber(),
-                memberRegisterRequest.getRole()
-        );
+        Member member = Member.newMember(memberRegisterRequest.getName(),
+                memberRegisterRequest.getIdNumber(), memberRegisterRequest.getPassword(),
+                memberRegisterRequest.getPhoneNumber(), memberRegisterRequest.getRole());
+        memberRepository.save(member);
     }
 
     @Transactional(readOnly = true)
     public List<Member> findAll(Long memberId, String role) {
         validateAdmin(memberId);
-        return memberDao.findAllByRole(role);
+        RoleType roleType = RoleType.from(role);
+        return memberRepository.findAllByRole(roleType);
     }
 
     private void validateAdmin(Long memberId) {
-        Member member = memberDao.findById(memberId);
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow();
         if (!member.isAdmin()) {
             throw new ForbiddenException("관리자만 사용자 등록/전체 보기 가능");
         }

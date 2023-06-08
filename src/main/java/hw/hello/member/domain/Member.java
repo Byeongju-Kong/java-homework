@@ -1,32 +1,43 @@
 package hw.hello.member.domain;
 
-import javax.management.relation.Role;
+import hw.hello.lecture.domain.MemberLecture;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private long id;
+
     @Column(nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private int idNumber;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private RoleType roleType;
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberLecture> memberLectures = new ArrayList<>();
 
     protected Member() {
     }

@@ -47,7 +47,6 @@ public class BookController {
         if (errors.hasErrors()) {
             return "bookRegister";
         }
-        errors.addAllErrors();
         jdbcTemplate.update(INSERT_QUERY, book.getBookName(), book.getPublisher(),
                 book.getPrice(), book.getType(), book.getImageUrl());
         List<Book> books = jdbcTemplate.query(SELECT_QUERY, BOOK_ROW_MAPPER);
