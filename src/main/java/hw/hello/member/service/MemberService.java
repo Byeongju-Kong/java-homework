@@ -1,6 +1,7 @@
 package hw.hello.member.service;
 
 import hw.hello.exception.ForbiddenException;
+import hw.hello.exception.NotFoundException;
 import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
 import hw.hello.member.repository.MemberRepository;
@@ -39,7 +40,7 @@ public class MemberService {
 
     private void validateAdmin(Long memberId) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::member);
         if (!member.isAdmin()) {
             throw new ForbiddenException("관리자만 사용자 등록/전체 보기 가능");
         }

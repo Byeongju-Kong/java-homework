@@ -1,6 +1,7 @@
 package hw.hello.lecture.service;
 
 import hw.hello.exception.ForbiddenException;
+import hw.hello.exception.NotFoundException;
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.domain.MemberLecture;
 import hw.hello.lecture.repository.LectureRepository;
@@ -28,7 +29,7 @@ public class LectureService {
     @Transactional
     public void register(Long memberId, String name, int credit) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::member);
         if (!member.isProfessor()) {
             throw new ForbiddenException("교수만 강의를 등록할 수 있습니다.");
         }
@@ -44,15 +45,15 @@ public class LectureService {
     @Transactional(readOnly = true)
     public Lecture findLecture(Long lectureId) {
         return lectureRepository.findById(lectureId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::lecture);
     }
 
     @Transactional
     public void registerStudentToLecture(Long memberId, Long lectureId) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::member);
         Lecture lecture = lectureRepository.findById(lectureId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::lecture);
         if (!member.isStudent()) {
             throw new ForbiddenException("학생만 수강신청 가능");
         }

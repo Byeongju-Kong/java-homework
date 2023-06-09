@@ -1,6 +1,7 @@
 package hw.hello.grade.service;
 
 import hw.hello.exception.ForbiddenException;
+import hw.hello.exception.NotFoundException;
 import hw.hello.grade.domain.Grade;
 import hw.hello.grade.repository.GradeRepository;
 import hw.hello.lecture.domain.Lecture;
@@ -28,9 +29,9 @@ public class GradeService {
     @Transactional
     public void registerGrade(Long id, Long lectureId, Long studentId, int credit, double gradeValue) {
         Member member = memberRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::member);
         Lecture lecture = lectureRepository.findById(lectureId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::lecture);
         if (!member.isProfessor()) {
             throw new ForbiddenException("교수만 성적 등록 가능");
         }
@@ -41,7 +42,7 @@ public class GradeService {
     @Transactional(readOnly = true)
     public List<Grade> findAllByLectureId(Long memberId, Long lectureId) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::lecture);
         if (member.isStudent()) {
             throw new ForbiddenException("학생은 강의별 전체 성적 조회 불가능");
         }
@@ -51,7 +52,7 @@ public class GradeService {
     @Transactional(readOnly = true)
     public List<Grade> findAllByMemberId(Long memberId) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow();
+                .orElseThrow(NotFoundException::member);
         if (!member.isStudent()) {
             throw new ForbiddenException("학생만 개인 성적 조회 가능");
         }
