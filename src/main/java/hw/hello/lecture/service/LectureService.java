@@ -1,12 +1,10 @@
 package hw.hello.lecture.service;
 
 import hw.hello.exception.ForbiddenException;
-import hw.hello.lecture.dao.LectureDao;
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.domain.MemberLecture;
 import hw.hello.lecture.repository.LectureRepository;
 import hw.hello.lecture.repository.MemberLectureRepository;
-import hw.hello.member.dao.MemberDao;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
