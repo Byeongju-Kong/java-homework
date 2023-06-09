@@ -1,6 +1,5 @@
 package hw.hello.auth.service;
 
-import hw.hello.exception.NotFoundException;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.Optional;

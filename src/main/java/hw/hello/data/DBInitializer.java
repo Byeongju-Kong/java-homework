@@ -7,10 +7,9 @@ import hw.hello.lecture.repository.LectureRepository;
 import hw.hello.lecture.repository.MemberLectureRepository;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class DBInitializer {
