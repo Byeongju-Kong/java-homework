@@ -55,9 +55,10 @@ public class LectureService {
     }
 
     @Transactional(readOnly = true)
-    public Lecture findLecture(Long lectureId) {
-        return lectureRepository.findById(lectureId)
+    public LectureInfoResponse findLecture(Long lectureId) {
+        Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(NotFoundException::lecture);
+        return new LectureInfoResponse(lecture);
     }
 
     @Transactional
