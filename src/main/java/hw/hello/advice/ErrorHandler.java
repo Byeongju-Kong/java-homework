@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ErrorHandler {
 
-    @ExceptionHandler(ForbiddenException.class)
+    /*@ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<MessageResponse> unauthorizedException(ForbiddenException exception) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new MessageResponse(exception.getMessage()));
-    }
+    }*/
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<MessageResponse> notFoundException(NotFoundException exception) {
@@ -26,5 +26,10 @@ public class ErrorHandler {
     public ResponseEntity<MessageResponse> validException(MethodArgumentNotValidException exception) {
         FieldError error = exception.getFieldErrors().get(0);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(error.getDefaultMessage()));
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public String forbiddenException(ForbiddenException exception) {
+        return "redirect:/page/forbiddenInfo";
     }
 }

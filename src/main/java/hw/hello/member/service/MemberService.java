@@ -29,10 +29,19 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public List<MemberInfoResponse> findAll(Long memberId, String role) {
+    public List<MemberInfoResponse> findAllByRole(Long memberId, String role) {
         validateAdmin(memberId);
         RoleType roleType = RoleType.from(role);
         return memberRepository.findAllByRoleType(roleType)
+                .stream()
+                .map(MemberInfoResponse::new)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<MemberInfoResponse> findAll(Long memberId) {
+        validateAdmin(memberId);
+        return memberRepository.findAll()
                 .stream()
                 .map(MemberInfoResponse::new)
                 .collect(Collectors.toUnmodifiableList());

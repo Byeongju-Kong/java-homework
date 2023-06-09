@@ -5,7 +5,6 @@
 <head>
     <title>Title</title></head>
 <body>
-<h1><spring:message code="booksPage"/></h1>
 <hr>
 <table border="1">
     <tr>
@@ -16,15 +15,13 @@
     </tr>
     <c:forEach var="member" items="${members}">
         <tr>
-            <td>${book.idNumber}</td>
-            <td>${book.name}</td>
-            <td>${book.phoneNumber}</td>
-            <td>${book.role}</td>
+            <td>${member.idNumber}</td>
+            <td>${member.name}</td>
+            <td>${member.phoneNumber}</td>
+            <td>${member.role}</td>
         </tr>
     </c:forEach>
 </table>
 <hr>
-<a href="/books/register"><spring:message code="bookRegisterPage"/></a>
-<a href="/"><spring:message code="mainPage"/></a>
 </body>
 </html>

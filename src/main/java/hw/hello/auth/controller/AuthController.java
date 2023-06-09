@@ -6,6 +6,7 @@ import hw.hello.auth.service.LoginRequest;
 import hw.hello.auth.service.LoginResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,7 @@ public class AuthController {
         return ResponseEntity.badRequest().body(new MessageResponse("학번/비밀번호를 확인하세요"));
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession httpSession) {
         httpSession.removeAttribute("role");
         httpSession.removeAttribute("id");

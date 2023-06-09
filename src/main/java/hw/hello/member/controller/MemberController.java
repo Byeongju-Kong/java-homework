@@ -7,6 +7,7 @@ import hw.hello.web.Login;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/members")
+@Controller
 public class MemberController {
 
     private final MemberService memberService;
@@ -26,16 +26,16 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> registerMember(@Login Long id,
-                                               @Validated @RequestBody MemberRegisterRequest memberRegisterRequest) {
-        memberService.registerNewMember(id, memberRegisterRequest);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/members")
+    public String getMembers(@Login Long memberId, @RequestParam String role, Model model) {
+        List<MemberInfoResponse> members = memberService.findAllByRole(memberId, role);
+        model.addAttribute("members", members);
+        return "members";
     }
 
-    @GetMapping
-    public String getMembers(@Login Long memberId, @RequestParam String role, Model model) {
-        List<MemberInfoResponse> members = memberService.findAll(memberId, role);
+    @GetMapping("/members-list")
+    public String getMembers(@Login Long memberId, Model model) {
+        List<MemberInfoResponse> members = memberService.findAll(memberId);
         model.addAttribute("members", members);
         return "members";
     }

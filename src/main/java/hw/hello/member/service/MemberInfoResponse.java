@@ -11,7 +11,7 @@ public class MemberInfoResponse {
     private String name;
     private int idNumber;
     private String phoneNumber;
-    private RoleType roleType;
+    private RoleType role;
     private List<MyLectureInfoResponse> lectures;
 
     public MemberInfoResponse() {
@@ -22,7 +22,7 @@ public class MemberInfoResponse {
         this.name = member.getName();
         this.idNumber = member.getIdNumber();
         this.phoneNumber = member.getPhoneNumber();
-        this.roleType = member.getRoleType();
+        this.role = member.getRoleType();
         this.lectures = member.getLectures()
                 .stream()
                 .map(MyLectureInfoResponse::new)
@@ -45,8 +45,8 @@ public class MemberInfoResponse {
         return phoneNumber;
     }
 
-    public RoleType getRoleType() {
-        return roleType;
+    public RoleType getRole() {
+        return role;
     }
 
     public List<MyLectureInfoResponse> getLectures() {
