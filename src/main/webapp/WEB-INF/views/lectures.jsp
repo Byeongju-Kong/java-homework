@@ -10,9 +10,9 @@
     String role = (String) session.getAttribute("role");
 %>
 <%
-    if(role.equals("STUDENT")) {
+    if (role.equals("STUDENT")) {
 %>
-<table border="1" id = "lectureTable">
+<table border="1" id="lectureTable">
     <tbody>
     <th>강의명</th>
     <th>교수명</th>
@@ -34,7 +34,7 @@
             console.log(lectures);
             let table = document.getElementById("lectureTable");
             let tbody = table.querySelector("tbody");
-            for(let i = 0; i< lectures.length; i++){
+            for (let i = 0; i < lectures.length; i++) {
                 let lecture = lectures[i];
                 let row = document.createElement("tr");
                 let lectureName = document.createElement("td");
@@ -53,18 +53,58 @@
                 credit.textContent = lecture.credit;
                 row.appendChild(credit);
 
+
                 let registerBtn = document.createElement("td");
-                registerBtn.innerHTML = "<button class="btn btn-danger pull-right">삭제</button>";
-                registerBtn.textContent = "수강신청";
+                let button = document.createElement("button");
+                button.innerHTML = "신청하기"; // 버튼 텍스트 설정
+                button.onclick = function () {
+                    fetch('/lectures/apply',
+                        {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                lectureId: lecture.id
+                            })
+                        }
+                    ).then(async res => {
+                            if (res.status === 201) {
+                                alert("수강신청 성공");
+                            }
+                        }
+                    )
+                }
+                registerBtn.appendChild(button);
+                row.appendChild(registerBtn);
 
                 tbody.appendChild(row);
             }
         })
+
+    function register(lectureId) {
+        fetch('/lectures/apply',
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    lectureId: lectureId
+                })
+            }
+        ).then(async res => {
+                if (res.status === 201) {
+                    alert("수강신청 성공");
+                }
+            }
+        )
+    }
 </script>
 <%
-    } else {
+} else {
 %>
-<table border="1" id = "lectureTable">
+<table border="1" id="lectureTable">
     <tbody>
     <th>강의명</th>
     <th>교수명</th>
@@ -85,7 +125,7 @@
             console.log(lectures);
             let table = document.getElementById("lectureTable");
             let tbody = table.querySelector("tbody");
-            for(let i = 0; i< lectures.length; i++){
+            for (let i = 0; i < lectures.length; i++) {
                 let lecture = lectures[i];
                 let row = document.createElement("tr");
                 let lectureName = document.createElement("td");

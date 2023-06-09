@@ -1,10 +1,13 @@
 package hw.hello.lecture.controller;
 
+import hw.hello.lecture.service.LectureApplicationRequest;
 import hw.hello.lecture.service.LectureInfoResponse;
 import hw.hello.lecture.service.LectureRegisterRequest;
 import hw.hello.lecture.service.LectureService;
 import hw.hello.web.Login;
+import java.net.URI;
 import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +37,12 @@ public class LectureController {
     public ResponseEntity<List<LectureInfoResponse>> getLectures() {
         List<LectureInfoResponse> lectures = lectureService.findAllLectures();
         return ResponseEntity.ok(lectures);
+    }
+
+    @PostMapping("/apply")
+    public ResponseEntity<Void> apply(@Login Long memberId,
+                                      @Validated @RequestBody LectureApplicationRequest lectureApplicationRequest) {
+        lectureService.registerStudentToLecture(memberId, lectureApplicationRequest.getLectureId());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
