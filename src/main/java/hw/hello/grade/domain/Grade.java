@@ -23,19 +23,17 @@ public class Grade {
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Member student;
-    private int credit;
     private double grade;
 
-    public Grade(Long id, Lecture lecture, Member student, int credit, double grade) {
+    public Grade(Long id, Lecture lecture, Member student, double grade) {
         this.id = id;
         this.lecture = lecture;
         this.student = student;
-        this.credit = credit;
         this.grade = grade;
     }
 
-    public static Grade initial(Lecture lecture, Member student, int credit, double grade) {
-        return new Grade(null, lecture, student, credit, grade);
+    public static Grade initial(Lecture lecture, Member student, double grade) {
+        return new Grade(null, lecture, student, grade);
     }
 
     public Long getId() {
@@ -48,10 +46,6 @@ public class Grade {
 
     public Member getStudent() {
         return student;
-    }
-
-    public int getCredit() {
-        return credit;
     }
 
     public double getGrade() {

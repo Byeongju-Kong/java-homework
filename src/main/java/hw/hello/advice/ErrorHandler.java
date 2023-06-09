@@ -22,9 +22,14 @@ public class ErrorHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(exception.getMessage()));
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<MessageResponse> validException(MethodArgumentNotValidException exception) {
         FieldError error = exception.getFieldErrors().get(0);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(error.getDefaultMessage()));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<MessageResponse> illegalArgumentException(IllegalArgumentException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(exception.getMessage()));
     }
 }

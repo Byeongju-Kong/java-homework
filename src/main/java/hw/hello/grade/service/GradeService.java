@@ -28,15 +28,17 @@ public class GradeService {
     }
 
     @Transactional
-    public void registerGrade(Long lectureId, Long studentId, int credit, double gradeValue) {
-        Member member = memberRepository.findById(studentId)
+    public void registerGrade(Long memberId, Long lectureId, Long studentId, double gradeValue) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(NotFoundException::member);
+        Member student = memberRepository.findById(studentId)
                 .orElseThrow(NotFoundException::member);
         Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(NotFoundException::lecture);
         if (!member.isProfessor()) {
             throw new ForbiddenException("교수만 성적 등록 가능");
         }
-        Grade grade = Grade.initial(lecture, member, credit, gradeValue);
+        Grade grade = Grade.initial(lecture, member, gradeValue);
         gradeRepository.save(grade);
     }
 
