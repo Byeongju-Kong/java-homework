@@ -54,4 +54,11 @@ public class MemberService {
             throw new ForbiddenException("관리자만 사용자 등록/전체 보기 가능");
         }
     }
+
+    @Transactional(readOnly = true)
+    public MemberInfoResponse findByMemberId(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(NotFoundException::member);
+        return new MemberInfoResponse(member);
+    }
 }
