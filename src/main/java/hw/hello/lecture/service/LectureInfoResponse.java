@@ -21,7 +21,7 @@ public class LectureInfoResponse {
         this.credit = lecture.getCredit();
         this.students = lecture.getStudents()
                 .stream()
-                .map(LectureMemberInfoResponse::new)
+                .map(student -> new LectureMemberInfoResponse(student, lecture))
                 .collect(Collectors.toUnmodifiableList());
     }
 

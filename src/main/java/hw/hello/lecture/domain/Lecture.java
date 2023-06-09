@@ -1,5 +1,6 @@
 package hw.hello.lecture.domain;
 
+import hw.hello.grade.domain.Grade;
 import hw.hello.member.domain.Member;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class Lecture {
 
     @OneToMany(mappedBy = "lecture")
     private List<MemberLecture> students = new ArrayList<>();
+
+    @OneToMany(mappedBy = "lecture")
+    private List<Grade> grades = new ArrayList<>();
 
     protected Lecture() {
     }
@@ -68,6 +72,10 @@ public class Lecture {
 
     public String getProfessorPhoneNumber() {
         return professor.getPhoneNumber();
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
     }
 
     public List<Member> getStudents() {
