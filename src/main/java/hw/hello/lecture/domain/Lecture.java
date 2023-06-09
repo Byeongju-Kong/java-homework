@@ -1,6 +1,7 @@
 package hw.hello.lecture.domain;
 
 import hw.hello.member.domain.Member;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ public class Lecture {
     private int credit;
 
     @OneToMany(mappedBy = "lecture")
-    private List<MemberLecture> students;
+    private List<MemberLecture> students = new ArrayList<>();
 
     protected Lecture() {
     }
@@ -44,6 +45,10 @@ public class Lecture {
         this.name = name;
         this.credit = credit;
         this.students = students;
+    }
+
+    public static Lecture initial(Member professor, String name, int credit) {
+        return new Lecture(null, professor, name, credit, null);
     }
 
     public Long getId() {
