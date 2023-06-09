@@ -17,9 +17,4 @@ public class PageController {
     public String getLoginPage() {
         return "login";
     }
-
-    @GetMapping("/forbiddenInfo")
-    public String getForbiddenInfoPage() {
-        return "forbiddenInfoPage";
-    }
 }
