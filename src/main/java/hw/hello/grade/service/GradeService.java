@@ -9,6 +9,7 @@ import hw.hello.lecture.repository.LectureRepository;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,22 +41,28 @@ public class GradeService {
     }
 
     @Transactional(readOnly = true)
-    public List<Grade> findAllByLectureId(Long memberId, Long lectureId) {
+    public List<GradeResponse> findAllByLectureId(Long memberId, Long lectureId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(NotFoundException::lecture);
         if (member.isStudent()) {
             throw new ForbiddenException("학생은 강의별 전체 성적 조회 불가능");
         }
-        return gradeRepository.findByLectureId(lectureId);
+        return gradeRepository.findByLectureId(lectureId)
+                .stream()
+                .map(GradeResponse::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Transactional(readOnly = true)
-    public List<Grade> findAllByMemberId(Long memberId) {
+    public List<GradeResponse> findAllByMemberId(Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(NotFoundException::member);
         if (!member.isStudent()) {
             throw new ForbiddenException("학생만 개인 성적 조회 가능");
         }
-        return gradeRepository.findByStudent(member);
+        return gradeRepository.findByLectureId(memberId)
+                .stream()
+                .map(GradeResponse::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
