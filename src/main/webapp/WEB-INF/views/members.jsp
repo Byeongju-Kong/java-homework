@@ -3,7 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Title</title></head>
+    <title>Title</title>
+</head>
 <body>
 <hr>
 <table border="1">
