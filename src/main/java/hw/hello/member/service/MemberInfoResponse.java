@@ -1,6 +1,5 @@
 package hw.hello.member.service;
 
-import hw.hello.lecture.service.LectureInfoResponse;
 import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
 import java.util.List;
@@ -23,7 +22,7 @@ public class MemberInfoResponse {
         this.name = member.getName();
         this.idNumber = member.getIdNumber();
         this.phoneNumber = member.getPhoneNumber();
-        this.roleType = member.getRole();
+        this.roleType = member.getRoleType();
         this.lectures = member.getLectures()
                 .stream()
                 .map(MyLectureInfoResponse::new)

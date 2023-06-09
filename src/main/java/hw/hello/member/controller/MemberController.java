@@ -1,6 +1,7 @@
 package hw.hello.member.controller;
 
 import hw.hello.member.domain.Member;
+import hw.hello.member.service.MemberInfoResponse;
 import hw.hello.member.service.MemberRegisterRequest;
 import hw.hello.member.service.MemberService;
 import hw.hello.web.Login;
@@ -33,7 +34,7 @@ public class MemberController {
 
     @GetMapping
     public String getMembers(@Login Long memberId, @RequestParam String role, Model model) {
-        List<Member> members = memberService.findAll(memberId, role);
+        List<MemberInfoResponse> members = memberService.findAll(memberId, role);
         model.addAttribute("members", members);
         return "members";
     }

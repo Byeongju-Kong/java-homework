@@ -5,9 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1><spring:message code="homeMsg"/></h1>
-<a href="/customers/register/page"><spring:message code="customerRegisterPage"/></a><br>
-<a href="/books/register/page"><spring:message code="bookRegisterPage"/></a><br>
-<a href="/orders/register/page"><spring:message code="orderRegisterPage"/></a>
+<a href="/members"></a><br>
 </body>
 </html>

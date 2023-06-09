@@ -89,7 +89,7 @@ public class Member {
         return phoneNumber;
     }
 
-    public RoleType getRole() {
+    public RoleType getRoleType() {
         return roleType;
     }
 

@@ -21,7 +21,6 @@ public class Lecture {
     @Column(name = "lecture_id")
     private Long id;
 
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "professor_id")
     private Member professor;

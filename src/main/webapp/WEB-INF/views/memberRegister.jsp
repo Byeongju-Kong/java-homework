@@ -8,23 +8,40 @@
     <title>회원 등록페이지</title></head>
 <body>
 <hr>
-    <% request.setCharacterEncoding("UTF-8"); %>
-<form:form action="/member" modelAttribute="memberRegisterRequest">
-<p><label>
-    <spring:message code="idNumber"/>:<br> <form:input path="idNumber"/> <form:errors path="idNumber"/>
-</label></p>
-<p><label>
-    <spring:message code="password"/>:<br> <form:input path="password"/> <form:errors path="password"/>
-</label></p>
-<p><label>
-    <spring:message code="memberName"/>:<br> <form:input path="memberName"/> <form:errors path="memberName"/>
-</label></p>
-<p><label>
-    <spring:message code="phoneNumber"/>:<br> <form:input path="phoneNumber"/> <form:errors path="phoneNumber"/>
-</label></p>
-<p><label>
-    <spring:message code="role"/>:<br> <form:input path="role"/> <form:errors path="role"/>
-</label></p>
-<button class="btn" type="submit"><spring:message code="submit"/></button>
-</form:form>
+<p>아이디 <input type="text" id="idNumber" name=idNumber width="12" size="10"></p><br>
+<p>비밀번호 <input type="text" id="password" name=password width="12" size="10"></p><br>
+<p>이름 <input type="text" id="name" name=name width="12" size="10"></p><br>
+<p>주소 <input type="text" id="phoneNumber" name=phoneNumber width="12" size="10"></p><br>
+<p>전화번호 <input type="text" id="role" name=role width="12" size="10"></p><br>
+
+<script>
+    function move() {
+        let idNumber = document.getElementById("idNumber").value;
+        let password = document.getElementById("password").value;
+        let name = document.getElementById("name").value;
+        let phoneNumber = document.getElementById("phoneNumber").value;
+        let role = document.getElementById("role").value;
+        fetch('/members', {
+            method: "POST",
+            body: JSON.stringify({
+                idNumber: idNumber,
+                password: password,
+                name: name,
+                phoneNumber: phoneNumber,
+                role: role
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(async res => {
+                if (res.status === 400) {
+                    let exceptionMessage = await res.text();
+                    alert(exceptionMessage);
+                }
+                location.reload();
+            })
+    }
+</script>
+
 <hr>

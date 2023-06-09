@@ -60,7 +60,7 @@ public class GradeService {
         if (!member.isStudent()) {
             throw new ForbiddenException("학생만 개인 성적 조회 가능");
         }
-        return gradeRepository.findByLectureId(memberId)
+        return gradeRepository.findByStudent(member)
                 .stream()
                 .map(GradeResponse::new)
                 .collect(Collectors.toUnmodifiableList());

@@ -32,7 +32,7 @@ public class MemberService {
     public List<MemberInfoResponse> findAll(Long memberId, String role) {
         validateAdmin(memberId);
         RoleType roleType = RoleType.from(role);
-        return memberRepository.findAllByRole(roleType)
+        return memberRepository.findAllByRoleType(roleType)
                 .stream()
                 .map(MemberInfoResponse::new)
                 .collect(Collectors.toUnmodifiableList());
