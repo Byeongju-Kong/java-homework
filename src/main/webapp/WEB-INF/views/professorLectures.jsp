@@ -52,14 +52,7 @@
                     let button = document.createElement("button");
                     button.innerHTML = "상세보기"; // 버튼 텍스트 설정
                     button.onclick = function () {
-                        fetch('/lectures?id=' + lecture.id,
-                            {
-                                method: "GET",
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-                            }
-                        )
+                        location.replace('/lectures/detail?id=' + lecture.id);
                     };
                     detailTd.appendChild(button);
                     row.appendChild(detailTd);
@@ -68,3 +61,5 @@
             }
         )
 </script>
+</body>
+</html>

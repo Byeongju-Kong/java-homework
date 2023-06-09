@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/lecture")
+@RequestMapping("/lectures/detail")
 public class LectureController {
 
     private final LectureService lectureService;
@@ -19,7 +19,7 @@ public class LectureController {
         this.lectureService = lectureService;
     }
 
-    @GetMapping(params = "id")
+    @GetMapping()
     public String getLecture(Model model, @RequestParam Long id) {
         LectureInfoResponse lecture = lectureService.findLecture(id);
         model.addAttribute("lecture", lecture);
