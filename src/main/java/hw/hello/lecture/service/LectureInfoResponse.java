@@ -1,18 +1,8 @@
 package hw.hello.lecture.service;
 
 import hw.hello.lecture.domain.Lecture;
-import hw.hello.lecture.domain.MemberLecture;
-import hw.hello.member.domain.Member;
-import hw.hello.member.service.MemberInfoResponse;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 public class LectureInfoResponse {
 

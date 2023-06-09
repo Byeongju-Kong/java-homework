@@ -9,6 +9,7 @@ import hw.hello.lecture.repository.MemberLectureRepository;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,8 +39,11 @@ public class LectureService {
     }
 
     @Transactional(readOnly = true)
-    public List<Lecture> findAllLectures() {
-        return lectureRepository.findAll();
+    public List<LectureInfoResponse> findAllLectures() {
+        return lectureRepository.findAll()
+                .stream()
+                .map(LectureInfoResponse::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Transactional(readOnly = true)

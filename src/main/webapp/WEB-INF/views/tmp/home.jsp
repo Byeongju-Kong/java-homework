@@ -21,7 +21,10 @@
 <p><a href="/members?role=STUDENT">학생 목록 조회</a></p>
 <p><a href="/members?role=PROFESSOR">교수 목록 조회</a></p>
 <p><a href="/members-list">회원 전체 목록 조회</a></p>
-<%}%>
+<%} else if (role.equals("PROFESSOR")) {%>
+<p><a href="/page/lectures-register">강의 등록</a></p>
+<%}
+%>
 <%}%>
 
 </body>

@@ -17,4 +17,14 @@ public class PageController {
     public String getLoginPage() {
         return "login";
     }
+
+    @GetMapping("/lectures-register")
+    public String getLectureRegisterPage() {
+        return "lectureRegister";
+    }
+
+    @GetMapping("/lectures")
+    public String getLecturePage() {
+        return "lectures";
+    }
 }
