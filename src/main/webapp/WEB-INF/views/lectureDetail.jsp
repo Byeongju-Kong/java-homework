@@ -22,12 +22,14 @@
     <tr>
         <th>학생 이름</th>
         <th>학생 학번</th>
-        <th>성적 입력</th>
+        <th>성적</th>
+        <th>성적 저장하기</th>
     </tr>
     <c:forEach var="student" items="${lecture.students}">
         <tr>
             <td>${student.name}</td>
             <td>${student.idNumber}</td>
+            <td><input type="text" value="${student.grade}"></td>
             <td><button type="button" onclick="location.href='/grade?lectureId=' + ${param.id} + '&&studentId=' + ${student.id}">성적 입력하기</button></td>
         </tr>
     </c:forEach>

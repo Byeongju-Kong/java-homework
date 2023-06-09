@@ -4,6 +4,8 @@ import hw.hello.grade.domain.Grade;
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.member.domain.Member;
 
+import java.util.Optional;
+
 public class LectureMemberInfoResponse {
 
     private Long id;
@@ -18,12 +20,15 @@ public class LectureMemberInfoResponse {
         this.id = member.getId();
         this.name = member.getName();
         this.idNumber = member.getIdNumber();
-        this.grade = lecture.getGrades()
+        Optional<Grade> value = lecture.getGrades()
                 .stream()
                 .filter(grade -> grade.getStudent().getId().equals(member.getId()))
-                .findAny()
-                .get()
-                .getGrade();
+                .findAny();
+        if(value.isPresent()) {
+            this.grade = value.get().getGrade();
+        } else {
+            this.grade = 0.0;
+        }
     }
 
     public Long getId() {
