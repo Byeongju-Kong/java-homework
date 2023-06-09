@@ -11,7 +11,7 @@
 <p>비밀번호 <input type="text" id="password" name=password width="12" size="10"></p><br>
 <p>이름 <input type="text" id="name" name=name width="12" size="10"></p><br>
 <p>전화번호 <input type="text" id="phoneNumber" name=phoneNumber width="12" size="10"></p><br>
-<p>역할 <input type="text" id="role" name=role width="12" size="10"></p><br>
+<p>역할(STUDENT or PROFESSOR) <input type="text" id="role" name=role width="12" size="10"></p><br>
 <button onclick="move()">제출</button>
 
 <script>
@@ -35,11 +35,15 @@
             }
         })
             .then(async res => {
+                let body = await res.json();
                 if (res.status === 400) {
-                    let exceptionMessage = await res.text();
-                    alert(exceptionMessage);
+                    alert(body.message);
+                    location.reload();
                 }
-                location.reload();
+                if (res.status === 200) {
+                    alert(body.message);
+                    location.replace('/');
+                }
             })
     }
 </script>
