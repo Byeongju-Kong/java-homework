@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AuthController {
+public class AuthRestController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
+    public AuthRestController(AuthService authService) {
         this.authService = authService;
     }
 

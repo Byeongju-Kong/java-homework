@@ -24,38 +24,47 @@
         }
     })
         .then(async res => {
-            lectures = await res.json();
-            console.log(lectures);
-            let table = document.getElementById("lectureTable");
-            let tbody = table.querySelector("tbody");
-            for (let i = 0; i < lectures.length; i++) {
-                let lecture = lectures[i];
-                let row = document.createElement("tr");
-                let lectureName = document.createElement("td");
-                lectureName.textContent = lecture.name;
-                row.appendChild(lectureName);
+                lectures = await res.json();
+                console.log(lectures);
+                let table = document.getElementById("lectureTable");
+                let tbody = table.querySelector("tbody");
+                for (let i = 0; i < lectures.length; i++) {
+                    let lecture = lectures[i];
+                    let row = document.createElement("tr");
+                    let lectureName = document.createElement("td");
+                    lectureName.textContent = lecture.name;
+                    row.appendChild(lectureName);
 
-                let professorName = document.createElement("td");
-                professorName.textContent = lecture.professorName;
-                row.appendChild(professorName);
+                    let professorName = document.createElement("td");
+                    professorName.textContent = lecture.professorName;
+                    row.appendChild(professorName);
 
-                let professorPhoneNumber = document.createElement("td");
-                professorPhoneNumber.textContent = lecture.professorPhoneNumber;
-                row.appendChild(professorPhoneNumber);
+                    let professorPhoneNumber = document.createElement("td");
+                    professorPhoneNumber.textContent = lecture.professorPhoneNumber;
+                    row.appendChild(professorPhoneNumber);
 
-                let credit = document.createElement("td");
-                credit.textContent = lecture.credit;
-                row.appendChild(credit);
+                    let credit = document.createElement("td");
+                    credit.textContent = lecture.credit;
+                    row.appendChild(credit);
 
 
-                let detailTd = document.createElement("td");
-                let button = document.createElement("button");
-                button.innerHTML = "상세보기"; // 버튼 텍스트 설정
-                let onclickUrl = 'location.replace = /lectures?id=' + lecture.id;
-                button.onclick = "'location.replace = /lectures?id=' + lecture.id';
-                detailTd.appendChild(button);
-                row.appendChild(detailTd);
-                tbody.appendChild(row);
+                    let detailTd = document.createElement("td");
+                    let button = document.createElement("button");
+                    button.innerHTML = "상세보기"; // 버튼 텍스트 설정
+                    button.onclick = function () {
+                        fetch('/lectures?id=' + lecture.id,
+                            {
+                                method: "GET",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }
+                        )
+                    };
+                    detailTd.appendChild(button);
+                    row.appendChild(detailTd);
+                    tbody.appendChild(row);
+                }
             }
-        })
+        )
 </script>
