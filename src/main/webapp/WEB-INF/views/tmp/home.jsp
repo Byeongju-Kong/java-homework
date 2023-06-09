@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/members"></a><br>
+<p><a href="/page/members">회원 등록</a></p>
 </body>
 </html>

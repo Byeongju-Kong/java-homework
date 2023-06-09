@@ -1,6 +1,5 @@
 package hw.hello.member.controller;
 
-import hw.hello.member.domain.Member;
 import hw.hello.member.service.MemberInfoResponse;
 import hw.hello.member.service.MemberRegisterRequest;
 import hw.hello.member.service.MemberService;
@@ -37,5 +36,10 @@ public class MemberController {
         List<MemberInfoResponse> members = memberService.findAll(memberId, role);
         model.addAttribute("members", members);
         return "members";
+    }
+
+    @GetMapping("/page")
+    public String getPage() {
+        return "memberRegister";
     }
 }
