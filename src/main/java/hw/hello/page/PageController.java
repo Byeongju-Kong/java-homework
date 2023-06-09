@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     @GetMapping("/members")
-    public String getPage() {
+    public String getMemberRegisterPage() {
         return "memberRegister";
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
     }
 }

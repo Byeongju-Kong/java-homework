@@ -37,9 +37,4 @@ public class MemberController {
         model.addAttribute("members", members);
         return "members";
     }
-
-    @GetMapping("/page")
-    public String getPage() {
-        return "memberRegister";
-    }
 }

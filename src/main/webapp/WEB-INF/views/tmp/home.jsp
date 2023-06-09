@@ -6,5 +6,6 @@
 </head>
 <body>
 <p><a href="/page/members">회원 등록</a></p>
+<p><a href="/page/login">로그인</a></p>
 </body>
 </html>

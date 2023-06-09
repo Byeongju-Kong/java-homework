@@ -20,4 +20,12 @@ public class LoginRequest {
     public String getPassword() {
         return password;
     }
+
+    public void setIdNumber(Integer idNumber) {
+        this.idNumber = idNumber;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

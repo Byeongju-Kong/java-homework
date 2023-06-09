@@ -7,12 +7,12 @@
 <head>
     <title>회원 등록페이지</title></head>
 <body>
-<hr>
-<p>아이디 <input type="text" id="idNumber" name=idNumber width="12" size="10"></p><br>
+<p>학번 <input type="text" id="idNumber" name=idNumber width="12" size="10"></p><br>
 <p>비밀번호 <input type="text" id="password" name=password width="12" size="10"></p><br>
 <p>이름 <input type="text" id="name" name=name width="12" size="10"></p><br>
-<p>주소 <input type="text" id="phoneNumber" name=phoneNumber width="12" size="10"></p><br>
-<p>전화번호 <input type="text" id="role" name=role width="12" size="10"></p><br>
+<p>전화번호 <input type="text" id="phoneNumber" name=phoneNumber width="12" size="10"></p><br>
+<p>역할 <input type="text" id="role" name=role width="12" size="10"></p><br>
+<button onclick="move()">제출</button>
 
 <script>
     function move() {
@@ -43,5 +43,5 @@
             })
     }
 </script>
-
-<hr>
+</body>
+</html>
