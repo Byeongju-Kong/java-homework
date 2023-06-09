@@ -29,7 +29,7 @@ public class GradeService {
 
     @Transactional
     public void registerGrade(Long id, Long lectureId, Long studentId, int credit, double gradeValue) {
-        Member member = memberRepository.findById(id)
+        Member member = memberRepository.findById(studentId)
                 .orElseThrow(NotFoundException::member);
         Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(NotFoundException::lecture);
