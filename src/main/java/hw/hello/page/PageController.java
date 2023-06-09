@@ -27,4 +27,9 @@ public class PageController {
     public String getLecturePage() {
         return "lectures";
     }
+
+    @GetMapping("/lectures/professor")
+    public String getMyLectures() {
+        return "professorLectures";
+    }
 }

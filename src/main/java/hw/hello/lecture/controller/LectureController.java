@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -44,5 +45,17 @@ public class LectureController {
                                       @Validated @RequestBody LectureApplicationRequest lectureApplicationRequest) {
         lectureService.registerStudentToLecture(memberId, lectureApplicationRequest.getLectureId());
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/professor")
+    public ResponseEntity<List<LectureInfoResponse>> getProfessorLectures(@Login Long memberId) {
+        List<LectureInfoResponse> lectures = lectureService.findByProfessorId(memberId);
+        return ResponseEntity.ok(lectures);
+    }
+
+    @GetMapping(params = "id")
+    public String a(@RequestParam Long id) {
+        return "a";
+
     }
 }

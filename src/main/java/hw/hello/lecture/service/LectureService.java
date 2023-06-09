@@ -47,6 +47,14 @@ public class LectureService {
     }
 
     @Transactional(readOnly = true)
+    public List<LectureInfoResponse> findByProfessorId(Long professorId) {
+        return lectureRepository.findByProfessorId(professorId)
+                .stream()
+                .map(LectureInfoResponse::new)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    @Transactional(readOnly = true)
     public Lecture findLecture(Long lectureId) {
         return lectureRepository.findById(lectureId)
                 .orElseThrow(NotFoundException::lecture);

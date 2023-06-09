@@ -23,8 +23,10 @@
 <p><a href="/members-list">회원 전체 목록 조회</a></p>
 <%} else if (role.equals("PROFESSOR")) {%>
 <p><a href="/page/lectures-register">강의 등록</a></p>
-<%}
-%>
+<p><a href="/page/lectures/professor">내가 개설한 강의 목록</a></p>
+<%} else {%>
+<p><a href="/page/lectures">전체 강의 목록</a></p>
+<%}%>
 <%}%>
 
 </body>
