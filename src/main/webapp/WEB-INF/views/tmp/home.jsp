@@ -14,13 +14,14 @@
 <p><a href="/page/login">로그인</a></p>
 <%} else {%>
 <h1><c:out value="당신은 ${role} 입니다."/></h1>
+<p><a href="/members/my-info">마이페이지</a></p>
+<p><a href="/logout" onclick="alert('로그아웃 완료')">로그아웃</a></p>
 <% if(role.equals("ADMIN")){%>
 <p><a href="/page/members">회원 등록</a></p>
 <p><a href="/members?role=STUDENT">학생 목록 조회</a></p>
 <p><a href="/members?role=PROFESSOR">교수 목록 조회</a></p>
 <p><a href="/members-list">회원 전체 목록 조회</a></p>
 <%}%>
-<p><a href="/logout" onclick="alert('로그아웃 완료')">로그아웃</a></p>
 <%}%>
 
 </body>

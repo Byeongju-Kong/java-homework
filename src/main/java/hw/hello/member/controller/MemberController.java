@@ -39,4 +39,11 @@ public class MemberController {
         model.addAttribute("members", members);
         return "members";
     }
+
+    @GetMapping("/members/my-info")
+    public String getMyInfo(@Login Long memberId, Model model){
+        MemberInfoResponse memberInfo = memberService.findByMemberId(memberId);
+        model.addAttribute("memberInfo", memberInfo);
+        return "memberInfo";
+    }
 }
