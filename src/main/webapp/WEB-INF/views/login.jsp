@@ -27,12 +27,13 @@
             }
         })
             .then(async res => {
-                if (res.status === 404) {
-                    let errorResponse = await res.json();
-                    alert(errorResponse.message);
+                let body = await res.json();
+                if (res.status === 400) {
+                    alert(body.message);
                     location.reload();
                 }
                 if (res.status === 200) {
+                    alert(body.message);
                     location.replace('/');
                 }
             })

@@ -1,6 +1,6 @@
 package hw.hello.auth.controller;
 
-import hw.hello.advice.ErrorResponse;
+import hw.hello.advice.MessageResponse;
 import hw.hello.auth.service.AuthService;
 import hw.hello.auth.service.LoginRequest;
 import hw.hello.auth.service.LoginResponse;
@@ -21,15 +21,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+    public ResponseEntity<MessageResponse> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         LoginResponse loginResponse =
-                authService.isRightIdNumberAndPassword(loginRequest.getIdNumber(), loginRequest.getPassword());
+                authService.login(loginRequest.getIdNumber(), loginRequest.getPassword());
         if (loginResponse.isSuccess()) {
             httpSession.setAttribute("role", loginResponse.getRole());
             httpSession.setAttribute("id", loginResponse.getMemberId());
-            return ResponseEntity.ok("회원가입 완료");
+            return ResponseEntity.ok(new MessageResponse("로그인 완료"));
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body(new MessageResponse("학번/비밀번호를 확인하세요"));
     }
 }
