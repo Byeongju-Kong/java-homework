@@ -9,7 +9,7 @@ public class NotFoundException extends RuntimeException {
     }
 
     public static NotFoundException member() {
-        return new NotFoundException(String.format(MESSAGE_FORMAT, "회원"));
+        return new NotFoundException("존재하지 않는 회원입니다.");
     }
 
     public static NotFoundException grade() {

@@ -15,10 +15,11 @@ public class AuthService {
     }
 
     public LoginResponse isRightIdNumberAndPassword(int idNumber, String password) {
-        Member member = memberRepository.findByIdNumber(idNumber).orElseThrow(NotFoundException::member);
-        if(member.hasPassword(password)) {
+        Member member = memberRepository.findByIdNumber(idNumber)
+                .orElseThrow(NotFoundException::member);
+        if (member.hasPassword(password)) {
             return new LoginResponse(true, member.getId(), member.getRoleType().name());
         }
-        return new LoginResponse(false, null, null);
+        throw NotFoundException.member();
     }
 }
