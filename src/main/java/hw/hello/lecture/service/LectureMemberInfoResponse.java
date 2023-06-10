@@ -24,11 +24,8 @@ public class LectureMemberInfoResponse {
                 .stream()
                 .filter(grade -> grade.getStudent().getId().equals(member.getId()))
                 .findAny();
-        if(value.isPresent()) {
-            this.grade = value.get().getGrade();
-        } else {
-            this.grade = 0.0;
-        }
+        this.grade = value.map(Grade::getGrade)
+                .orElse(0.0);
     }
 
     public Long getId() {

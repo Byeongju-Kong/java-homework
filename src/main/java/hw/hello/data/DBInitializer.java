@@ -30,7 +30,7 @@ public class DBInitializer {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         Member admin = Member.newMember(
                 "관리자", 20170000, "asdf123!!", "010-1234-1234", "ADMIN");
         Member student1 = Member.newMember(
@@ -39,7 +39,6 @@ public class DBInitializer {
                 "공병주", 20172703, "asdf123!!", "010-5590-3624", "STUDENT");
         Member professor1 = Member.newMember(
                 "다니엘", 20170001, "asdf123!!", "010-1111-1111", "PROFESSOR");
-
 
         Lecture lecture1 = new Lecture(null, professor1, "고급자바프로그래밍", 3, null);
 

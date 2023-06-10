@@ -38,7 +38,7 @@ public class GradeService {
         if (!member.isProfessor()) {
             throw new ForbiddenException("교수만 성적 등록 가능");
         }
-        Grade grade = Grade.initial(lecture, member, gradeValue);
+        Grade grade = Grade.initial(lecture, student, gradeValue);
         gradeRepository.save(grade);
     }
 
