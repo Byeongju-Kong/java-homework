@@ -9,7 +9,6 @@ public class GradeResponse {
     private String professorName;
     private String studentName;
     private int studentIdNumber;
-    private int credit;
     private double grade;
 
     public GradeResponse() {
@@ -21,7 +20,6 @@ public class GradeResponse {
         this.professorName = grade.getLecture().getProfessorName();
         this.studentName = grade.getStudent().getName();
         this.studentIdNumber = grade.getStudent().getIdNumber();
-        this.credit = grade.getCredit();
         this.grade = grade.getGrade();
     }
 
@@ -43,10 +41,6 @@ public class GradeResponse {
 
     public int getStudentIdNumber() {
         return studentIdNumber;
-    }
-
-    public int getCredit() {
-        return credit;
     }
 
     public double getGrade() {

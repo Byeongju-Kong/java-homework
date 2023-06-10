@@ -9,6 +9,7 @@
     String role = (String) session.getAttribute("role");
 %>
 <body>
+
 <h1><c:out value="강의 상세보기"/></h1>
 <c:out value="강의명: ${lecture.name}"/><br>
 <c:out value="담당교수 이름: ${lecture.professorName}"/><br>
@@ -17,7 +18,7 @@
 
 <% if (role.equals("PROFESSOR")) {%>
 <hr>
-<h2>수강 내역</h2>
+<h2>강의 학생 목록</h2>
 <table border="1">
     <tr>
         <th>학생 이름</th>
@@ -29,12 +30,31 @@
         <tr>
             <td>${student.name}</td>
             <td>${student.idNumber}</td>
-            <td><input type="text" value="${student.grade}"></td>
-            <td><button type="button" onclick="location.href='/grade?lectureId=' + ${param.id} + '&&studentId=' + ${student.id}">성적 입력하기</button></td>
+            <td><input type="text" id="studentgrade" value="${student.grade}"></td>
+            <td><button onclick="registerGrade(${student.id},${param.id})">저장하기</button></td>
         </tr>
     </c:forEach>
 </table>
-<%}%>
-
+<%}%><script>
+    function registerGrade(studentId, lectureId) {
+        fetch('/grade', {
+            method: "POST",
+            body: JSON.stringify({
+                studentId: studentId,
+                lectureId: lectureId,
+                grade: document.getElementById("studentgrade").value,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(async res => {
+                if (res.status === 201) {
+                    alert("성적 등록 성공");
+                    location.reload();
+                }
+            })
+    }
+</script>
 </body>
 </html>

@@ -23,6 +23,6 @@ public class LectureController {
     public String getLecture(Model model, @RequestParam Long id) {
         LectureInfoResponse lecture = lectureService.findLecture(id);
         model.addAttribute("lecture", lecture);
-        return "lectureDetail";
+        return "processorLectureDetail";
     }
 }

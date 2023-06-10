@@ -25,6 +25,9 @@ public class Grade {
     private Member student;
     private double grade;
 
+    protected Grade() {
+    }
+
     public Grade(Long id, Lecture lecture, Member student, double grade) {
         this.id = id;
         this.lecture = lecture;
