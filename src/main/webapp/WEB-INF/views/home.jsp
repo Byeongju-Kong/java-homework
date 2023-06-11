@@ -24,6 +24,7 @@
 <%} else if (role.equals("PROFESSOR")) {%>
 <p><a href="/page/lectures-register">강의 등록</a></p>
 <p><a href="/page/lectures/professor">내가 개설한 강의 목록</a></p>
+<p><a href="/page/lectures">전체 강의 목록</a></p>
 <%} else {%>
 <p><a href="/page/lectures">전체 강의 목록</a></p>
 <%}%>

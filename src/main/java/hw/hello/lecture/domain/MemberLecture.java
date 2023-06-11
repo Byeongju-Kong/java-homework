@@ -1,14 +1,13 @@
 package hw.hello.lecture.domain;
 
 import hw.hello.member.domain.Member;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "member_lecture", columnNames = {"student_id", "lecture_id"})
+})
 public class MemberLecture {
 
     @Id

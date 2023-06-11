@@ -9,6 +9,7 @@ import hw.hello.lecture.repository.MemberLectureRepository;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,6 +72,10 @@ public class LectureService {
             throw new ForbiddenException("학생만 수강신청 가능");
         }
         MemberLecture memberLecture = new MemberLecture(member, lecture);
-        memberLectureRepository.save(memberLecture);
+        try {
+            memberLectureRepository.save(memberLecture);
+        } catch (Exception e) {
+            throw new ForbiddenException("이미 신청한 강의입니다");
+        }
     }
 }
