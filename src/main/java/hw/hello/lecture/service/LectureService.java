@@ -36,7 +36,11 @@ public class LectureService {
             throw new ForbiddenException("교수만 강의를 등록할 수 있습니다.");
         }
         Lecture lecture = Lecture.initial(member, name, credit);
-        lectureRepository.save(lecture);
+        try {
+            lectureRepository.save(lecture);
+        } catch (Exception e) {
+            throw new ForbiddenException("이미 존재하는 강의입니다.");
+        }
     }
 
     @Transactional(readOnly = true)
@@ -77,5 +81,10 @@ public class LectureService {
         } catch (Exception e) {
             throw new ForbiddenException("이미 신청한 강의입니다");
         }
+    }
+
+    @Transactional
+    public void deleteLecture(Long lectureId){
+        lectureRepository.deleteById(lectureId);
     }
 }

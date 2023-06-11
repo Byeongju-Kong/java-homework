@@ -14,6 +14,7 @@
     <th>교수연락처</th>
     <th>학점</th>
     <th>상세보기</th>
+    <th>삭제하기</th>
     </tbody>
 </table>
 <script>
@@ -57,6 +58,35 @@
                     };
                     detailTd.appendChild(button);
                     row.appendChild(detailTd);
+
+                    let detailTd2 = document.createElement("td");
+                    let button2 = document.createElement("button");
+                    button2.innerHTML = "삭제하기";
+                    button2.onclick = function (){
+                        fetch("/lectures/professor", {
+                            method: "DELETE",
+                            body: JSON.stringify({
+                                lectureId: lecture.id,
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(async res => {
+                                let body = await res.json();
+                                if (res.status === 400) {
+                                    alert(body.message);
+                                    location.reload();
+                                }
+                                if (res.status === 200) {
+                                    alert(body.message);
+                                    location.reload();
+                                }
+                            })
+                    }
+                    detailTd2.appendChild(button2);
+                    row.appendChild(detailTd2);
+
                     tbody.appendChild(row);
                 }
             }

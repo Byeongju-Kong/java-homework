@@ -34,7 +34,7 @@
                     alert(body.message);
                     location.replace('/page/lectures/professor');
                 }
-                if (res.status === 400) {
+                if (res.status === 403) {
                     alert(body.message);
                     location.reload();
                 }

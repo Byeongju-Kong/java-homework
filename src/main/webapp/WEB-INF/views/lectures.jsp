@@ -8,11 +8,11 @@
 <%
     String role = (String) session.getAttribute("role");
 %>
+<h1>전체 강의 목록</h1>
+<hr>
 <%
     if (role.equals("STUDENT")) {
 %>
-<h1>강의 목록</h1>
-<hr>
 <table border="1" id="lectureTable">
     <tbody>
     <th>강의명</th>

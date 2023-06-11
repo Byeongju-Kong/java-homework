@@ -5,14 +5,7 @@ import hw.hello.member.domain.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Lecture {
@@ -26,16 +19,16 @@ public class Lecture {
     @JoinColumn(name = "professor_id")
     private Member professor;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)
     private int credit;
 
-    @OneToMany(mappedBy = "lecture")
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.REMOVE)
     private List<MemberLecture> students = new ArrayList<>();
 
-    @OneToMany(mappedBy = "lecture")
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.REMOVE)
     private List<Grade> grades = new ArrayList<>();
 
     protected Lecture() {
