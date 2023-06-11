@@ -5,13 +5,14 @@
 <head>
     <title>Title</title></head>
 <body>
-<hr>
 <%
     String role = (String) session.getAttribute("role");
 %>
 <%
     if (role.equals("STUDENT")) {
 %>
+<h1>강의 목록</h1>
+<hr>
 <table border="1" id="lectureTable">
     <tbody>
     <th>강의명</th>
@@ -57,7 +58,7 @@
                 let registerBtn = document.createElement("td");
                 let button = document.createElement("button");
                 button.innerHTML = "신청하기"; // 버튼 텍스트 설정
-                button.onclick = function () {
+                button.onclick = function (url) {
                     fetch('/lectures/apply',
                         {
                             method: "POST",
@@ -68,12 +69,18 @@
                                 lectureId: lecture.id
                             })
                         }
-                    ).then(async res => {
-                            if (res.status === 201) {
-                                alert("수강신청 성공");
-                            }
-                        }
                     )
+                        .then(async res => {
+                            let body = await res.json();
+                            if (res.status === 201) {
+                                alert(body.message);
+                                location.replace('/page/lectures');
+                            }
+                            if (res.status === 400) {
+                                alert(body.message);
+                                location.reload();
+                            }
+                        })
                 }
                 registerBtn.appendChild(button);
                 row.appendChild(registerBtn);
@@ -81,25 +88,6 @@
                 tbody.appendChild(row);
             }
         })
-
-    function register(lectureId) {
-        fetch('/lectures/apply',
-            {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    lectureId: lectureId
-                })
-            }
-        ).then(async res => {
-                if (res.status === 201) {
-                    alert("수강신청 성공");
-                }
-            }
-        )
-    }
 </script>
 <%
 } else {
@@ -154,5 +142,6 @@
     }
 %>
 <hr>
+<button onclick="location.replace('/')">홈으로 돌아가기</button>
 </body>
 </html>

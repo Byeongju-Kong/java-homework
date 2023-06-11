@@ -39,6 +39,10 @@ public class Grade {
         return new Grade(null, lecture, student, grade);
     }
 
+    public void modifyGrade(double grade) {
+        this.grade = grade;
+    }
+
     public Long getId() {
         return id;
     }

@@ -67,4 +67,15 @@ public class GradeService {
                 .map(GradeResponse::new)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    @Transactional
+    public void modifyGrade(Long memberId, Long lectureId, Long studentId, double gradeValue) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(NotFoundException::member);
+        if (!member.isProfessor()) {
+            throw new ForbiddenException("교수만 성적 입력 및 수정 가능");
+        }
+        Grade grade = gradeRepository.findByLectureIdAndStudentId(lectureId, studentId);
+        grade.modifyGrade(gradeValue);
+    }
 }

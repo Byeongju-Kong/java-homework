@@ -6,6 +6,7 @@ import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,5 +61,17 @@ public class MemberService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(NotFoundException::member);
         return new MemberInfoResponse(member);
+    }
+
+    @Transactional
+    public void deleteByMemberIdNumber(MemberDeleteRequest memberDeleteRequest){
+        memberRepository.deleteByIdNumber(memberDeleteRequest.getMemberIdNumber());
+    }
+
+    @Transactional
+    public void modifyMember(Long memberId, MemberModifyRequest memberModifyRequest){
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(NotFoundException::member);
+        member.modify(memberModifyRequest.getPassword(), memberModifyRequest.getPhoneNumber());
     }
 }

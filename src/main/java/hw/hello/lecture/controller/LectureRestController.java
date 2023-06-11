@@ -1,5 +1,6 @@
 package hw.hello.lecture.controller;
 
+import hw.hello.advice.MessageResponse;
 import hw.hello.lecture.service.LectureApplicationRequest;
 import hw.hello.lecture.service.LectureInfoResponse;
 import hw.hello.lecture.service.LectureRegisterRequest;
@@ -26,10 +27,10 @@ public class LectureRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> registerLecture(@Login Long memberId,
+    public ResponseEntity<MessageResponse> registerLecture(@Login Long memberId,
                                                 @RequestBody @Validated LectureRegisterRequest lectureRegisterRequest) {
         lectureService.register(memberId, lectureRegisterRequest.getName(), lectureRegisterRequest.getCredit());
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new MessageResponse("강의 등록 성공"));
     }
 
     @GetMapping
@@ -39,10 +40,10 @@ public class LectureRestController {
     }
 
     @PostMapping("/apply")
-    public ResponseEntity<Void> apply(@Login Long memberId,
-                                      @Validated @RequestBody LectureApplicationRequest lectureApplicationRequest) {
+    public ResponseEntity<MessageResponse> apply(@Login Long memberId,
+                                                 @Validated @RequestBody LectureApplicationRequest lectureApplicationRequest) {
         lectureService.registerStudentToLecture(memberId, lectureApplicationRequest.getLectureId());
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(new MessageResponse("강의 등록 성공"));
     }
 
     @GetMapping("/professor")

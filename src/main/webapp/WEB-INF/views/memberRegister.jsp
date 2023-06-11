@@ -12,8 +12,7 @@
 <p>이름 <input type="text" id="name" name=name width="12" size="10"></p><br>
 <p>전화번호 <input type="text" id="phoneNumber" name=phoneNumber width="12" size="10"></p><br>
 <p>역할(STUDENT or PROFESSOR) <input type="text" id="role" name=role width="12" size="10"></p><br>
-<button onclick="move()">제출</button>
-
+<button onclick="move()">저장</button>
 <script>
     function move() {
         let idNumber = document.getElementById("idNumber").value;
@@ -47,5 +46,7 @@
             })
     }
 </script>
+<hr>
+<button onclick="location.replace('/')">홈으로 돌아가기</button>
 </body>
 </html>

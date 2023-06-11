@@ -7,9 +7,13 @@
 <head>
     <title>강의 등록페이지</title></head>
 <body>
+<h1>강의 등록페이지</h1>
+<hr>
 <p>강의명 <input type="text" id=lectureName name=lectureName width="12" size="10"></p><br>
 <p>학점 <input type="text" id=credit name=credit width="12" size="10"></p><br>
-<button onclick="move()">제출</button>
+<button onclick="move()">등록하기</button>
+<hr>
+<button onclick="location.replace('/')">홈으로 돌아가기</button>
 <script>
     function move() {
         let name = document.getElementById("lectureName").value;
@@ -25,9 +29,14 @@
             }
         })
             .then(async res => {
-                if (res.status === 204) {
-                    alert("강의 등록 성공");
-                    location.replace('/page/lectures');
+                let body = await res.json();
+                if (res.status === 200) {
+                    alert(body.message);
+                    location.replace('/page/lectures/professor');
+                }
+                if (res.status === 400) {
+                    alert(body.message);
+                    location.reload();
                 }
             })
     }

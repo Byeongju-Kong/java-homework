@@ -43,9 +43,10 @@ public class DBInitializer {
         Lecture lecture1 = new Lecture(null, professor1, "고급자바프로그래밍", 3, null);
 
         MemberLecture memberLecture1 = new MemberLecture(student1, lecture1);
+        MemberLecture memberLecture2 = new MemberLecture(student2, lecture1);
 
         memberRepository.saveAll(List.of(admin, student1, student2, professor1));
         lectureRepository.saveAll(List.of(lecture1));
-        memberLectureRepository.saveAll(List.of(memberLecture1));
+        memberLectureRepository.saveAll(List.of(memberLecture1, memberLecture2));
     }
 }

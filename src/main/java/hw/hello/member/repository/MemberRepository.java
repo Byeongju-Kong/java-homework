@@ -11,4 +11,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findAllByRoleType(RoleType roleType);
 
     Optional<Member> findByIdNumber(int idNumber);
+
+    void deleteByIdNumber(int idNumber);
 }

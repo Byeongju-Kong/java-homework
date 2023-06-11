@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -32,10 +33,18 @@ public class MemberController {
         return "members";
     }
 
+
     @GetMapping("/members/my-info")
     public String getMyInfo(@Login Long memberId, Model model){
         MemberInfoResponse memberInfo = memberService.findByMemberId(memberId);
         model.addAttribute("memberInfo", memberInfo);
         return "memberInfo";
+    }
+
+    @GetMapping("/members/my-info/modify")
+    public String getMyInfoModify(@Login Long memberId, Model model){
+        MemberInfoResponse memberInfo = memberService.findByMemberId(memberId);
+        model.addAttribute("memberInfo", memberInfo);
+        return "memberModify";
     }
 }

@@ -9,6 +9,7 @@ public class MemberInfoResponse {
 
     private long id;
     private String name;
+    private String password;
     private int idNumber;
     private String phoneNumber;
     private RoleType role;
@@ -20,6 +21,7 @@ public class MemberInfoResponse {
     public MemberInfoResponse(Member member) {
         this.id = member.getId();
         this.name = member.getName();
+        this.password = member.getPassword();
         this.idNumber = member.getIdNumber();
         this.phoneNumber = member.getPhoneNumber();
         this.role = member.getRoleType();
@@ -31,6 +33,10 @@ public class MemberInfoResponse {
 
     public long getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getName() {

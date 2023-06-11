@@ -57,6 +57,11 @@ public class Member {
         return new Member(null, name, idNumber, password, phoneNumber, roleType);
     }
 
+    public void modify(String password, String phoneNumber){
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
+
     public boolean isAdmin() {
         return roleType.isAdmin();
     }

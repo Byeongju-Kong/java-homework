@@ -10,8 +10,7 @@
 <body>
 <p>학번 <input type="text" id="idNumber" name=idNumber width="12" size="10"></p><br>
 <p>비밀번호 <input type="text" id="password" name=password width="12" size="10"></p><br>
-<button onclick="move()">제출</button>
-
+<button onclick="move()">확인</button>
 <script type="text/javascript">
     function move() {
         let idNumber = document.getElementById("idNumber").value;
@@ -39,5 +38,7 @@
             })
     }
 </script>
+<hr>
+<button onclick="location.replace('/')">홈으로 돌아가기</button>
 </body>
 </html>

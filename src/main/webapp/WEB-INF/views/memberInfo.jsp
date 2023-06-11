@@ -11,9 +11,11 @@
 <body>
 <h1><c:out value="마이페이지"/></h1>
 <c:out value="이름: ${memberInfo.name}"/><br>
+<c:out value="비밀번호: ${memberInfo.password}"/><br>
 <c:out value="학번: ${memberInfo.idNumber}"/><br>
 <c:out value="전화번호: ${memberInfo.phoneNumber}"/><br>
 <c:out value="역할: ${memberInfo.role}"/><br>
+<button onclick="location.replace('/members/my-info/modify')">내정보 수정</button>
 
 <% if (role.equals("STUDENT")) {%>
 <hr>
@@ -31,6 +33,7 @@
     </c:forEach>
 </table>
 <%}%>
-
+<hr>
+<button onclick="location.replace('/')">홈으로 돌아가기</button>
 </body>
 </html>

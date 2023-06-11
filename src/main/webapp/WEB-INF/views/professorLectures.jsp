@@ -5,6 +5,7 @@
 <head>
     <title>Title</title></head>
 <body>
+<h1>내 강의 목록</h1>
 <hr>
 <table border="1" id="lectureTable">
     <tbody>
@@ -61,5 +62,7 @@
             }
         )
 </script>
+<hr>
+<button onclick="location.replace('/')">홈으로 돌아가기</button>
 </body>
 </html>

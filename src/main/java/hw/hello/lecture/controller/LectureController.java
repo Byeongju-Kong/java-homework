@@ -1,6 +1,5 @@
 package hw.hello.lecture.controller;
 
-import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.service.LectureInfoResponse;
 import hw.hello.lecture.service.LectureService;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,7 @@ public class LectureController {
     }
 
     @GetMapping()
-    public String getLecture(Model model, @RequestParam Long id) {
+    public String getLectureDetail(Model model, @RequestParam Long id) {
         LectureInfoResponse lecture = lectureService.findLecture(id);
         model.addAttribute("lecture", lecture);
         return "processorLectureDetail";

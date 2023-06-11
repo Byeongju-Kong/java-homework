@@ -9,10 +9,11 @@
 <hr>
 <table border="1">
     <tr>
-        <th><spring:message code="memberName"/></th>
         <th><spring:message code="idNumber"/></th>
+        <th><spring:message code="memberName"/></th>
         <th><spring:message code="phoneNumber"/></th>
         <th><spring:message code="role"/></th>
+        <th>삭제</th>
     </tr>
     <c:forEach var="member" items="${members}">
         <tr>
@@ -20,9 +21,35 @@
             <td>${member.name}</td>
             <td>${member.phoneNumber}</td>
             <td>${member.role}</td>
+            <td><button onclick="deleteMember(${member.idNumber})">삭제하기</button></td>
         </tr>
     </c:forEach>
 </table>
 <hr>
+<script>
+    function deleteMember(memberIdNumber){
+        fetch("/members", {
+            method: "DELETE",
+            body: JSON.stringify({
+                memberIdNumber: memberIdNumber,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(async res => {
+                let body = await res.json();
+                if (res.status === 400) {
+                    alert(body.message);
+                    location.reload();
+                }
+                if (res.status === 200) {
+                    alert(body.message);
+                    location.reload();
+                }
+            })
+    }
+</script>
+<button onclick="location.replace('/')">홈으로 돌아가기</button>
 </body>
 </html>
