@@ -26,6 +26,7 @@
 <p><a href="/page/lectures/professor">내가 개설한 강의 목록</a></p>
 <p><a href="/page/lectures">전체 강의 목록</a></p>
 <%} else {%>
+<p><a href="/page/student/grade">성적 확인하기(구현 중)</a></p>
 <p><a href="/page/lectures">전체 강의 목록</a></p>
 <%}%>
 <%}%>
