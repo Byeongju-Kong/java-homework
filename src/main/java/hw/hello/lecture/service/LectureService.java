@@ -2,6 +2,7 @@ package hw.hello.lecture.service;
 
 import hw.hello.exception.ForbiddenException;
 import hw.hello.exception.NotFoundException;
+import hw.hello.grade.repository.GradeRepository;
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.domain.MemberLecture;
 import hw.hello.lecture.repository.LectureRepository;
@@ -9,7 +10,6 @@ import hw.hello.lecture.repository.MemberLectureRepository;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +20,14 @@ public class LectureService {
     private final MemberRepository memberRepository;
     private final LectureRepository lectureRepository;
     private final MemberLectureRepository memberLectureRepository;
+    private final GradeRepository gradeRepository;
 
     public LectureService(MemberRepository memberRepository, LectureRepository lectureRepository,
-                          MemberLectureRepository memberLectureRepository) {
+                          MemberLectureRepository memberLectureRepository, GradeRepository gradeRepository) {
         this.memberRepository = memberRepository;
         this.lectureRepository = lectureRepository;
         this.memberLectureRepository = memberLectureRepository;
+        this.gradeRepository = gradeRepository;
     }
 
     @Transactional
@@ -91,5 +93,6 @@ public class LectureService {
     @Transactional
     public void cancelLecture(Long memberId, Long lectureId){
         memberLectureRepository.deleteByMemberIdAndLectureId(memberId, lectureId);
+        gradeRepository.deleteByLectureIdAndStudentId(lectureId, memberId);
     }
 }
