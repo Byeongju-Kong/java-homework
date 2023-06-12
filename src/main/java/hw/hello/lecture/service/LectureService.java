@@ -87,4 +87,9 @@ public class LectureService {
     public void deleteLecture(Long lectureId){
         lectureRepository.deleteById(lectureId);
     }
+
+    @Transactional
+    public void cancelLecture(Long memberId, Long lectureId){
+        memberLectureRepository.deleteByMemberIdAndLectureId(memberId, lectureId);
+    }
 }

@@ -24,16 +24,61 @@
     <tr>
         <th>강의명</th>
         <th>교수이름</th>
+        <th>강의취소</th>
     </tr>
     <c:forEach var="lecture" items="${memberInfo.lectures}">
         <tr>
             <td>${lecture.name}</td>
             <td>${lecture.professorName}</td>
+            <td><button onclick="cancel(${lecture.id})">취소하기</button></td>
         </tr>
     </c:forEach>
 </table>
 <%}%>
 <hr>
 <button onclick="location.replace('/')">홈으로 돌아가기</button>
+<button onclick=logout()>로그아웃</button>
+<script>
+    function cancel(lectureId){
+        fetch('/lectures/student', {
+            method: "DELETE",
+            body: JSON.stringify({
+                lectureId: lectureId,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(async res => {
+                let body = await res.json();
+                if (res.status === 400) {
+                    alert(body.message);
+                    location.reload();
+                }
+                if (res.status === 200) {
+                    alert(body.message);
+                    location.reload();
+                }
+            })
+    }
+</script>
+<script>
+    function logout(){
+        fetch('/logout', {
+            method: "GET"
+        })
+            .then(async res => {
+                let body = await res.json();
+                if (res.status === 200) {
+                    alert(body.message);
+                    location.replace('/');
+                }
+                if (res.status === 403) {
+                    alert(body.message);
+                    location.reload();
+                }
+            })
+    }
+</script>
 </body>
 </html>

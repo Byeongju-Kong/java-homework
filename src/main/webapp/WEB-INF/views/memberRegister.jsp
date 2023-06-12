@@ -48,5 +48,24 @@
 </script>
 <hr>
 <button onclick="location.replace('/')">홈으로 돌아가기</button>
+<button onclick=logout()>로그아웃</button>
+<script>
+    function logout(){
+        fetch('/logout', {
+            method: "GET"
+        })
+            .then(async res => {
+                let body = await res.json();
+                if (res.status === 200) {
+                    alert(body.message);
+                    location.replace('/');
+                }
+                if (res.status === 403) {
+                    alert(body.message);
+                    location.reload();
+                }
+            })
+    }
+</script>
 </body>
 </html>

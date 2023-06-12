@@ -52,4 +52,10 @@ public class LectureRestController {
         lectureService.deleteLecture(lectureDeleteRequest.getLectureId());
         return ResponseEntity.ok(new MessageResponse("강의 삭제 성공"));
     }
+
+    @DeleteMapping("/student")
+    public ResponseEntity<MessageResponse> cancelLecture(@Login Long memberId, @RequestBody LectureCancelRequest lectureCancelRequest){
+        lectureService.cancelLecture(memberId, lectureCancelRequest.getLectureId());
+        return ResponseEntity.ok(new MessageResponse("강의 취소 성공"));
+    }
 }

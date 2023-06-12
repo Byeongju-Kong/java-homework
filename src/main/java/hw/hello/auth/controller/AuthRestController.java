@@ -33,9 +33,9 @@ public class AuthRestController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<Void> logout(HttpSession httpSession) {
+    public ResponseEntity<MessageResponse> logout(HttpSession httpSession) {
         httpSession.removeAttribute("role");
         httpSession.removeAttribute("id");
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new MessageResponse("로그아웃 완료"));
     }
 }

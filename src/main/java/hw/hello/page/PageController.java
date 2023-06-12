@@ -32,4 +32,9 @@ public class PageController {
     public String getMyLectures() {
         return "professorLectures";
     }
+
+    @GetMapping("/grades")
+    public String getMyGrades(){
+        return "grades";
+    }
 }
