@@ -39,7 +39,7 @@ public class LectureService {
         try {
             lectureRepository.save(lecture);
         } catch (Exception e) {
-            throw new ForbiddenException("이미 존재하는 강의입니다.");
+            throw new IllegalArgumentException("이미 존재하는 강의입니다.");
         }
     }
 
