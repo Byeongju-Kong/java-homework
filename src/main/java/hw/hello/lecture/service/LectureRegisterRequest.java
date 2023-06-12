@@ -12,7 +12,7 @@ public class LectureRegisterRequest {
 
     @NotNull(message = "강의의 학점을 입력해하세요.")
     @Min(value = 1, message = "최소 학점은 1학점입니다.")
-    @Max(value = 3, message = "최대 학점은 1학점입니다.")
+    @Max(value = 3, message = "최대 학점은 3학점입니다.")
     private Integer credit;
 
     public LectureRegisterRequest() {

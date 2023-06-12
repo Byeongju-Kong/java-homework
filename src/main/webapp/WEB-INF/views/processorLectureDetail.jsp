@@ -16,7 +16,7 @@
 <c:out value="담당교수 전화번호: ${lecture.professorPhoneNumber}"/><br>
 <c:out value="학점: ${lecture.credit}"/><br>
 <c:out value="수강 학생 수: ${lecture.students.size()}"/><br>
-<c:out value="점수 평균: 해야함"/><br>
+<c:out value="점수 평균: ${lecture.average}"/><br>
 
 <% if (role.equals("PROFESSOR")) {%>
 <hr>
