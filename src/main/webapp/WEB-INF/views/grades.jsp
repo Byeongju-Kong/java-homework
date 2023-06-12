@@ -21,6 +21,7 @@
     <th>학생명</th>
     <th>학번</th>
     <th>성적</th>
+    <th>학점</th>
     </tbody>
 </table>
 <script>
@@ -58,6 +59,10 @@
                 let gradeValue = document.createElement("td");
                 gradeValue.textContent = grade.grade;
                 row.appendChild(gradeValue);
+
+                let credit = document.createElement("td");
+                credit.textContent = grade.credit+"학점";
+                row.appendChild(credit);
 
                 tbody.appendChild(row);
             }
