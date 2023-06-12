@@ -1,8 +1,13 @@
 package hw.hello.member.service;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+@NoArgsConstructor
+@Getter
 public class MemberModifyRequest {
 
     @NotEmpty(message = "비밀번호를 입력하세요")
@@ -12,15 +17,4 @@ public class MemberModifyRequest {
     @NotEmpty(message = "전화번호를 입력하세요")
     @Pattern(regexp = "^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$", message = "전화번호는 010-xxxx-xxxx 형식으로 입력하세요")
     private String phoneNumber;
-
-    public MemberModifyRequest() {
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
 }

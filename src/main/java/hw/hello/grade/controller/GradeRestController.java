@@ -2,27 +2,21 @@ package hw.hello.grade.controller;
 
 import hw.hello.advice.MessageResponse;
 import hw.hello.grade.service.GradeRegisterRequest;
-import hw.hello.grade.service.GradeResponse;
 import hw.hello.grade.service.GradeResponses;
 import hw.hello.grade.service.GradeService;
 import hw.hello.web.Login;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/grade")
+@RequiredArgsConstructor
 public class GradeRestController {
 
     private final GradeService gradeService;
-
-    public GradeRestController(GradeService gradeService) {
-        this.gradeService = gradeService;
-    }
 
     @PostMapping
     public ResponseEntity<MessageResponse> registerGrade(@Login Long memberId,

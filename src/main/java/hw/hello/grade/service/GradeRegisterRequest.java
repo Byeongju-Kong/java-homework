@@ -1,8 +1,11 @@
 package hw.hello.grade.service;
 
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@NoArgsConstructor
 public class GradeRegisterRequest {
 
     @NotNull(message = "학생 ID를 입력하세요.")
@@ -15,9 +18,6 @@ public class GradeRegisterRequest {
 
     @NotNull(message = "성적 값을 입력하세요.")
     private Double grade;
-
-    public GradeRegisterRequest() {
-    }
 
     public Long getStudentId() {
         return studentId;

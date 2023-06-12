@@ -2,9 +2,14 @@ package hw.hello.member.service;
 
 import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+@Getter
 public class MemberInfoResponse {
 
     private long id;
@@ -14,9 +19,6 @@ public class MemberInfoResponse {
     private String phoneNumber;
     private RoleType role;
     private List<MyLectureInfoResponse> lectures;
-
-    public MemberInfoResponse() {
-    }
 
     public MemberInfoResponse(Member member) {
         this.id = member.getId();

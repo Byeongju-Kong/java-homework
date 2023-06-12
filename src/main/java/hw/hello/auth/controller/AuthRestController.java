@@ -5,6 +5,8 @@ import hw.hello.auth.service.AuthService;
 import hw.hello.auth.service.LoginRequest;
 import hw.hello.auth.service.LoginResponse;
 import javax.servlet.http.HttpSession;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class AuthRestController {
 
     private final AuthService authService;
-
-    public AuthRestController(AuthService authService) {
-        this.authService = authService;
-    }
 
     @PostMapping("/login")
     public ResponseEntity<MessageResponse> login(@RequestBody LoginRequest loginRequest, HttpSession httpSession) {

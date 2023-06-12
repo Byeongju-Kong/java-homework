@@ -1,10 +1,15 @@
 package hw.hello.lecture.service;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@NoArgsConstructor
+@Getter
 public class LectureRegisterRequest {
 
     @NotEmpty(message = "강의명을 입력하세요.")
@@ -14,15 +19,4 @@ public class LectureRegisterRequest {
     @Min(value = 1, message = "최소 학점은 1학점입니다.")
     @Max(value = 3, message = "최대 학점은 3학점입니다.")
     private Integer credit;
-
-    public LectureRegisterRequest() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getCredit() {
-        return credit;
-    }
 }

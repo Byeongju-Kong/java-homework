@@ -2,9 +2,12 @@ package hw.hello.grade.service;
 
 import hw.hello.grade.domain.Grade;
 import hw.hello.lecture.domain.Lecture;
+import lombok.Getter;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 public class GradeResponses {
 
     private List<GradeResponse> grades;
@@ -24,15 +27,8 @@ public class GradeResponses {
         if (creditSum == 0) {
             average = 0.0;
         } else {
-            average = gradeSum / creditSum;
+            double averageTemp = gradeSum / creditSum;
+            average = Math.round(averageTemp * 100.0) / 100.0;
         }
-    }
-
-    public List<GradeResponse> getGrades() {
-        return grades;
-    }
-
-    public double getAverage() {
-        return average;
     }
 }

@@ -2,6 +2,8 @@ package hw.hello.member.domain;
 
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.domain.MemberLecture;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+@NoArgsConstructor
 public class Member {
 
     @Id
@@ -40,9 +43,6 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<MemberLecture> memberLectures = new ArrayList<>();
-
-    protected Member() {
-    }
 
     public Member(Long id, String name, int idNumber, String password, String phoneNumber, String roleType) {
         this.id = id;

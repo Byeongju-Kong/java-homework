@@ -5,6 +5,7 @@ import hw.hello.lecture.service.*;
 import hw.hello.web.Login;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.aspectj.bridge.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/lectures")
+@RequiredArgsConstructor
 public class LectureRestController {
 
     private final LectureService lectureService;
-
-    public LectureRestController(LectureService lectureService) {
-        this.lectureService = lectureService;
-    }
 
     @PostMapping
     public ResponseEntity<MessageResponse> registerLecture(@Login Long memberId,

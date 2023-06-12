@@ -3,16 +3,15 @@ package hw.hello.auth.service;
 import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.Optional;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
     private final MemberRepository memberRepository;
-
-    public AuthService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     public LoginResponse login(int idNumber, String password) {
         Optional<Member> member = memberRepository.findByIdNumber(idNumber);

@@ -2,6 +2,10 @@ package hw.hello.grade.domain;
 
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.member.domain.Member;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Grade {
 
     @Id
@@ -25,15 +32,6 @@ public class Grade {
     private Member student;
     private double grade;
 
-    protected Grade() {
-    }
-
-    public Grade(Long id, Lecture lecture, Member student, double grade) {
-        this.id = id;
-        this.lecture = lecture;
-        this.student = student;
-        this.grade = grade;
-    }
 
     public static Grade initial(Lecture lecture, Member student, double grade) {
         return new Grade(null, lecture, student, grade);
@@ -41,21 +39,5 @@ public class Grade {
 
     public void modifyGrade(double grade) {
         this.grade = grade;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Lecture getLecture() {
-        return lecture;
-    }
-
-    public Member getStudent() {
-        return student;
-    }
-
-    public double getGrade() {
-        return grade;
     }
 }

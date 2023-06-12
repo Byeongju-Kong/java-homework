@@ -1,7 +1,11 @@
 package hw.hello.member.service;
 
 import hw.hello.lecture.domain.Lecture;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@Getter
 public class MyLectureInfoResponse {
 
     private Long id;
@@ -12,20 +16,5 @@ public class MyLectureInfoResponse {
         this.id = lecture.getId();
         this.name = lecture.getName();
         this.professorName = lecture.getProfessorName();
-    }
-
-    public MyLectureInfoResponse() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getProfessorName() {
-        return professorName;
     }
 }

@@ -6,18 +6,16 @@ import hw.hello.member.service.MemberModifyRequest;
 import hw.hello.member.service.MemberRegisterRequest;
 import hw.hello.member.service.MemberService;
 import hw.hello.web.Login;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 public class MemberRegisterController {
 
     private final MemberService memberService;
-
-    public MemberRegisterController(MemberService memberService) {
-        this.memberService = memberService;
-    }
 
     @PostMapping("/members")
     public ResponseEntity<MessageResponse> registerMember(@Login Long id,

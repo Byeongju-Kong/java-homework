@@ -1,10 +1,14 @@
 package hw.hello.lecture.domain;
 
 import hw.hello.member.domain.Member;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@Getter
 @Table(uniqueConstraints = {
         @UniqueConstraint(name = "member_lecture", columnNames = {"student_id", "lecture_id"})
 })
@@ -22,19 +26,8 @@ public class MemberLecture {
     @JoinColumn(name = "lecture_id")
     private Lecture lecture;
 
-    public MemberLecture() {
-    }
-
     public MemberLecture(Member member, Lecture lecture) {
         this.member = member;
         this.lecture = lecture;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public Lecture getLecture() {
-        return lecture;
     }
 }

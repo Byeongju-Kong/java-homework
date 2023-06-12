@@ -1,7 +1,11 @@
 package hw.hello.grade.service;
 
 import hw.hello.grade.domain.Grade;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@Getter
 public class GradeResponse {
 
     private Long id;
@@ -12,9 +16,6 @@ public class GradeResponse {
     private double credit;
     private double grade;
 
-    public GradeResponse() {
-    }
-
     public GradeResponse(Grade grade) {
         this.id = grade.getId();
         this.lectureName = grade.getLecture().getName();
@@ -23,31 +24,5 @@ public class GradeResponse {
         this.studentIdNumber = grade.getStudent().getIdNumber();
         this.credit = grade.getLecture().getCredit();
         this.grade = grade.getGrade();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getLectureName() {
-        return lectureName;
-    }
-
-    public String getProfessorName() {
-        return professorName;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public int getStudentIdNumber() {
-        return studentIdNumber;
-    }
-
-    public double getCredit() { return credit; }
-
-    public double getGrade() {
-        return grade;
     }
 }

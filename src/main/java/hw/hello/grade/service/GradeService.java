@@ -10,22 +10,18 @@ import hw.hello.member.domain.Member;
 import hw.hello.member.repository.MemberRepository;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class GradeService {
 
     private final GradeRepository gradeRepository;
     private final MemberRepository memberRepository;
     private final LectureRepository lectureRepository;
-
-    public GradeService(GradeRepository gradeRepository, MemberRepository memberRepository,
-                        LectureRepository lectureRepository) {
-        this.gradeRepository = gradeRepository;
-        this.memberRepository = memberRepository;
-        this.lectureRepository = lectureRepository;
-    }
 
     @Transactional
     public void registerGrade(Long memberId, Long lectureId, Long studentId, double gradeValue) {

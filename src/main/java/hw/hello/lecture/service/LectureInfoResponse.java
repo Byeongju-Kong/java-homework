@@ -3,11 +3,15 @@ package hw.hello.lecture.service;
 import hw.hello.grade.domain.Grade;
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.member.domain.Member;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+@Getter
 public class LectureInfoResponse {
 
     private Long id;
@@ -37,33 +41,5 @@ public class LectureInfoResponse {
                 .stream()
                 .map(student -> new LectureMemberInfoResponse(student, lecture))
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getProfessorName() {
-        return professorName;
-    }
-
-    public String getProfessorPhoneNumber() {
-        return professorPhoneNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getCredit() {
-        return credit;
-    }
-
-    public double getAverage() {
-        return average;
-    }
-
-    public List<LectureMemberInfoResponse> getStudents() {
-        return students;
     }
 }

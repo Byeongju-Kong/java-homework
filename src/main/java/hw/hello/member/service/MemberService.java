@@ -5,22 +5,18 @@ import hw.hello.exception.NotFoundException;
 import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
 import hw.hello.member.repository.MemberRepository;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import org.springframework.dao.DataIntegrityViolationException;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
-
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     @Transactional
     public void registerNewMember(Long memberId, MemberRegisterRequest memberRegisterRequest) {

@@ -1,11 +1,16 @@
 package hw.hello.member.service;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+@NoArgsConstructor
+@Getter
 public class MemberRegisterRequest {
 
     @NotNull(message = "학번을 입력하세요")
@@ -27,27 +32,4 @@ public class MemberRegisterRequest {
     @NotEmpty(message = "역할(교수 혹은 학생)을 입력하세요")
     @Pattern(regexp = "(PROFESSOR|STUDENT)", message = "역할은 PROFESSOR 혹은 STUDENT 입니다")
     private String role;
-
-    public MemberRegisterRequest() {
-    }
-
-    public int getIdNumber() {
-        return idNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getRole() {
-        return role;
-    }
 }
