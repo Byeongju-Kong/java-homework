@@ -3,6 +3,7 @@ package hw.hello.grade.controller;
 import hw.hello.advice.MessageResponse;
 import hw.hello.grade.service.GradeRegisterRequest;
 import hw.hello.grade.service.GradeResponse;
+import hw.hello.grade.service.GradeResponses;
 import hw.hello.grade.service.GradeService;
 import hw.hello.web.Login;
 import org.springframework.http.HttpStatus;
@@ -40,8 +41,8 @@ public class GradeRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GradeResponse>> getGrades(@Login Long memberId){
-        List<GradeResponse> grades = gradeService.findAllByMemberId(memberId);
+    public ResponseEntity<GradeResponses> getGrades(@Login Long memberId){
+        GradeResponses grades = gradeService.findAllByMemberId(memberId);
         return ResponseEntity.ok(grades);
     }
 }

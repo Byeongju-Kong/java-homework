@@ -25,7 +25,6 @@
     </tbody>
 </table>
 <script>
-    let grades = [];
     fetch('/grade', {
         method: "GET",
         headers: {
@@ -33,7 +32,9 @@
         }
     })
         .then(async res => {
-            grades = await res.json();
+            let body = await res.json();
+            let grades = body.grades;
+            let average = body.average;
             console.log(grades);
             let table = document.getElementById("gradeTable");
             let tbody = table.querySelector("tbody");
