@@ -19,7 +19,7 @@ public class GradeResponses {
                 .mapToInt(Lecture::getCredit)
                 .sum();
         double gradeSum = grades.stream()
-                .mapToDouble(Grade::getGrade)
+                .mapToDouble(grade -> grade.getLecture().getCredit() * grade.getGrade())
                 .sum();
         if (creditSum == 0) {
             average = 0.0;

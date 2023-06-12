@@ -10,6 +10,7 @@
 %>
 <h1>나의 학점</h1>
 <p>표시되지 않는 강의는 성적 입력 전입니다.</p>
+<p id = "average"></p>
 <hr>
 <%
     if (role.equals("STUDENT")) {
@@ -66,6 +67,9 @@
                 row.appendChild(credit);
 
                 tbody.appendChild(row);
+
+                let averageTag = document.getElementById("average");
+                averageTag.innerText = average;
             }
         })
 </script>
