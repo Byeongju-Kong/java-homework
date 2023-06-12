@@ -5,9 +5,11 @@ import hw.hello.exception.NotFoundException;
 import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
 import hw.hello.member.repository.MemberRepository;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,12 @@ public class MemberService {
     @Transactional
     public void registerNewMember(Long memberId, MemberRegisterRequest memberRegisterRequest) {
         validateAdmin(memberId);
+        if (memberRepository.existsByIdNumber(memberRegisterRequest.getIdNumber())) {
+            throw new IllegalArgumentException("이미 존재하는 학번입니다.");
+        }
+        if (memberRepository.existsByPhoneNumber(memberRegisterRequest.getPhoneNumber())) {
+            throw new IllegalArgumentException("이미 등록된 사용자의 전화번호 입니다.");
+        }
         Member member = Member.newMember(memberRegisterRequest.getName(),
                 memberRegisterRequest.getIdNumber(), memberRegisterRequest.getPassword(),
                 memberRegisterRequest.getPhoneNumber(), memberRegisterRequest.getRole());
@@ -64,12 +72,12 @@ public class MemberService {
     }
 
     @Transactional
-    public void deleteByMemberIdNumber(MemberDeleteRequest memberDeleteRequest){
+    public void deleteByMemberIdNumber(MemberDeleteRequest memberDeleteRequest) {
         memberRepository.deleteByIdNumber(memberDeleteRequest.getMemberIdNumber());
     }
 
     @Transactional
-    public void modifyMember(Long memberId, MemberModifyRequest memberModifyRequest){
+    public void modifyMember(Long memberId, MemberModifyRequest memberModifyRequest) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(NotFoundException::member);
         member.modify(memberModifyRequest.getPassword(), memberModifyRequest.getPhoneNumber());
