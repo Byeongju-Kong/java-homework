@@ -14,9 +14,9 @@ import javax.validation.constraints.Pattern;
 public class MemberRegisterRequest {
 
     @NotNull(message = "학번을 입력하세요")
-    @Min(value = 20170000, message = "학번은 20170000부터 20239999")
-    @Max(value = 20239999, message = "학번은 20170000부터 20239999")
-    private Integer idNumber;
+    @Min(value = 20170000, message = "학번은 20170000부터 20239999의 숫자")
+    @Max(value = 20239999, message = "학번은 20170000부터 20239999의 숫자")
+    private String idNumber;
 
     @NotEmpty(message = "비밀번호를 입력하세요")
     @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$", message = "비밀번호는 영문, 특수문자, 숫자 포함 8자 이상")
@@ -32,4 +32,10 @@ public class MemberRegisterRequest {
     @NotEmpty(message = "역할(교수 혹은 학생)을 입력하세요")
     @Pattern(regexp = "(PROFESSOR|STUDENT)", message = "역할은 PROFESSOR 혹은 STUDENT 입니다")
     private String role;
+
+    public int getIdNumber() {
+        return Integer.parseInt(idNumber);
+    }
 }
+
+
