@@ -21,18 +21,15 @@
             <td>${member.name}</td>
             <td>${member.phoneNumber}</td>
             <td>${member.role}</td>
-            <td><button onclick="deleteMember(${member.idNumber})">삭제하기</button></td>
+            <td><button onclick="deleteMember(${member.id})">삭제하기</button></td>
         </tr>
     </c:forEach>
 </table>
 <hr>
 <script>
-    function deleteMember(memberIdNumber){
-        fetch("/members", {
+    function deleteMember(memberId){
+        fetch("/members?deletedMemberId=" + memberId, {
             method: "DELETE",
-            body: JSON.stringify({
-                memberIdNumber: memberIdNumber,
-            }),
             headers: {
                 'Content-Type': 'application/json'
             }

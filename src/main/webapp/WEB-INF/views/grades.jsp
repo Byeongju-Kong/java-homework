@@ -67,10 +67,10 @@
                 row.appendChild(credit);
 
                 tbody.appendChild(row);
-
-                let averageTag = document.getElementById("average");
-                averageTag.innerText += average;
             }
+            let averageTag = document.getElementById("average");
+            console.log(average);
+            averageTag.innerHTML += average;
         })
 </script>
 <%

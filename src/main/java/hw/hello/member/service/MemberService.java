@@ -2,6 +2,8 @@ package hw.hello.member.service;
 
 import hw.hello.exception.ForbiddenException;
 import hw.hello.exception.NotFoundException;
+import hw.hello.grade.repository.GradeRepository;
+import hw.hello.lecture.repository.MemberLectureRepository;
 import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
 import hw.hello.member.repository.MemberRepository;
@@ -17,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final GradeRepository gradeRepository;
+    private final MemberLectureRepository memberLectureRepository;
 
     @Transactional
     public void registerNewMember(Long memberId, MemberRegisterRequest memberRegisterRequest) {
@@ -68,8 +72,11 @@ public class MemberService {
     }
 
     @Transactional
-    public void deleteByMemberIdNumber(MemberDeleteRequest memberDeleteRequest) {
-        memberRepository.deleteByIdNumber(memberDeleteRequest.getMemberIdNumber());
+    public void deleteByMemberIdNumber(Long memberId, Long deletedMemberId) {
+        validateAdmin(memberId);
+        gradeRepository.deleteByStudentId(deletedMemberId);
+        memberLectureRepository.deleteByMemberId(deletedMemberId);
+        memberRepository.deleteById(deletedMemberId);
     }
 
     @Transactional

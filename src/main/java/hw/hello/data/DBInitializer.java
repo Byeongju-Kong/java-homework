@@ -1,5 +1,6 @@
 package hw.hello.data;
 
+import hw.hello.grade.domain.Grade;
 import hw.hello.grade.repository.GradeRepository;
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.domain.MemberLecture;
@@ -16,13 +17,15 @@ public class DBInitializer {
 
     private final MemberRepository memberRepository;
     private final LectureRepository lectureRepository;
+    private final GradeRepository gradeRepository;
     private final MemberLectureRepository memberLectureRepository;
 
     public DBInitializer(MemberRepository memberRepository,
                          LectureRepository lectureRepository,
-                         MemberLectureRepository memberLectureRepository) {
+                         GradeRepository gradeRepository, MemberLectureRepository memberLectureRepository) {
         this.memberRepository = memberRepository;
         this.lectureRepository = lectureRepository;
+        this.gradeRepository = gradeRepository;
         this.memberLectureRepository = memberLectureRepository;
     }
 
@@ -47,9 +50,13 @@ public class DBInitializer {
 
         MemberLecture memberLecture1 = new MemberLecture(student1, lecture1);
         MemberLecture memberLecture2 = new MemberLecture(student2, lecture1);
+        MemberLecture memberLecture3 = new MemberLecture(student2, lecture2);
+        Grade grade1 = Grade.initial(lecture1, student2, 4.5);
+        Grade grade2 = Grade.initial(lecture2, student2, 3.5);
 
         memberRepository.saveAll(List.of(admin, student1, student2, professor1, professor2, professor3));
         lectureRepository.saveAll(List.of(lecture1, lecture2, lecture3));
-        memberLectureRepository.saveAll(List.of(memberLecture1, memberLecture2));
+        memberLectureRepository.saveAll(List.of(memberLecture1, memberLecture2, memberLecture3));
+        gradeRepository.saveAll(List.of(grade1, grade2));
     }
 }

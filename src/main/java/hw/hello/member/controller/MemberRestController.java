@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class MemberRegisterController {
+public class MemberRestController {
 
     private final MemberService memberService;
 
@@ -25,13 +25,14 @@ public class MemberRegisterController {
     }
 
     @DeleteMapping("/members")
-    public ResponseEntity<MessageResponse> deleteMember(@Login Long id, @RequestBody MemberDeleteRequest memberDeleteRequest){
-        memberService.deleteByMemberIdNumber(memberDeleteRequest);
+    public ResponseEntity<MessageResponse> deleteMember(@Login Long id, @RequestParam Long deletedMemberId){
+        memberService.deleteByMemberIdNumber(id, deletedMemberId);
         return ResponseEntity.ok(new MessageResponse("회원 삭제 성공"));
     }
 
     @PatchMapping("/members")
-    public ResponseEntity<MessageResponse> modifyMember(@Login Long id, @RequestBody @Validated MemberModifyRequest memberModifyRequest){
+    public ResponseEntity<MessageResponse> modifyMember(@Login Long id,
+                                                        @RequestBody @Validated MemberModifyRequest memberModifyRequest){
         memberService.modifyMember(id, memberModifyRequest);
         return ResponseEntity.ok(new MessageResponse("회원 정보 수정 성공"));
     }

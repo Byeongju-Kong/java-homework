@@ -12,7 +12,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findByIdNumber(int idNumber);
 
-    void deleteByIdNumber(int idNumber);
+    void deleteById(Long id);
 
     boolean existsByIdNumber(int idNumber);
 
