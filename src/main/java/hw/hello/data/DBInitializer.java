@@ -15,16 +15,13 @@ import org.springframework.stereotype.Component;
 public class DBInitializer {
 
     private final MemberRepository memberRepository;
-    private final GradeRepository gradeRepository;
     private final LectureRepository lectureRepository;
     private final MemberLectureRepository memberLectureRepository;
 
     public DBInitializer(MemberRepository memberRepository,
-                         GradeRepository gradeRepository,
                          LectureRepository lectureRepository,
                          MemberLectureRepository memberLectureRepository) {
         this.memberRepository = memberRepository;
-        this.gradeRepository = gradeRepository;
         this.lectureRepository = lectureRepository;
         this.memberLectureRepository = memberLectureRepository;
     }

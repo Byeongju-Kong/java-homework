@@ -2,6 +2,8 @@ package hw.hello.lecture.domain;
 
 import hw.hello.grade.domain.Grade;
 import hw.hello.member.domain.Member;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Lecture {
 
     @Id
@@ -34,17 +38,8 @@ public class Lecture {
     @OneToMany(mappedBy = "lecture", cascade = CascadeType.REMOVE)
     private List<Grade> grades = new ArrayList<>();
 
-    public Lecture(Long id, Member professor, String name, int credit,
-                   List<MemberLecture> students) {
-        this.id = id;
-        this.professor = professor;
-        this.name = name;
-        this.credit = credit;
-        this.students = students;
-    }
-
     public static Lecture initial(Member professor, String name, int credit) {
-        return new Lecture(null, professor, name, credit, null);
+        return new Lecture(null, professor, name, credit, null, null);
     }
 
     public Long getId() {

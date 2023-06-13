@@ -2,6 +2,7 @@ package hw.hello.member.domain;
 
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.lecture.domain.MemberLecture;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
     @Id
@@ -44,17 +46,8 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<MemberLecture> memberLectures = new ArrayList<>();
 
-    public Member(Long id, String name, int idNumber, String password, String phoneNumber, String roleType) {
-        this.id = id;
-        this.name = name;
-        this.idNumber = idNumber;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.roleType = RoleType.from(roleType);
-    }
-
     public static Member newMember(String name, int idNumber, String password, String phoneNumber, String roleType) {
-        return new Member(null, name, idNumber, password, phoneNumber, roleType);
+        return new Member(null, name, idNumber, password, phoneNumber, RoleType.from(roleType), null);
     }
 
     public void modify(String password, String phoneNumber){

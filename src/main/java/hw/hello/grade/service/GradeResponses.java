@@ -6,8 +6,10 @@ import lombok.Getter;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class GradeResponses {
 
     private List<GradeResponse> grades;
