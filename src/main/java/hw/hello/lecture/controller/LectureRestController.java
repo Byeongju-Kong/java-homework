@@ -46,14 +46,14 @@ public class LectureRestController {
     }
 
     @DeleteMapping("/professor")
-    public ResponseEntity<MessageResponse> deleteLecture(@RequestBody LectureDeleteRequest lectureDeleteRequest){
-        lectureService.deleteLecture(lectureDeleteRequest.getLectureId());
+    public ResponseEntity<MessageResponse> deleteLecture(@RequestParam Long lectureId) {
+        lectureService.deleteLecture(lectureId);
         return ResponseEntity.ok(new MessageResponse("강의 삭제 성공"));
     }
 
     @DeleteMapping("/student")
-    public ResponseEntity<MessageResponse> cancelLecture(@Login Long memberId, @RequestBody LectureCancelRequest lectureCancelRequest){
-        lectureService.cancelLecture(memberId, lectureCancelRequest.getLectureId());
+    public ResponseEntity<MessageResponse> cancelLecture(@Login Long memberId, @RequestParam Long lectureId) {
+        lectureService.cancelLecture(memberId, lectureId);
         return ResponseEntity.ok(new MessageResponse("강의 취소 성공"));
     }
 }

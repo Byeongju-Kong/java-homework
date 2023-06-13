@@ -63,11 +63,8 @@
                     let button2 = document.createElement("button");
                     button2.innerHTML = "삭제하기";
                     button2.onclick = function (){
-                        fetch("/lectures/professor", {
+                        fetch("/lectures/professor?lectureId=" + lecture.id, {
                             method: "DELETE",
-                            body: JSON.stringify({
-                                lectureId: lecture.id,
-                            }),
                             headers: {
                                 'Content-Type': 'application/json'
                             }

@@ -40,11 +40,8 @@
 <button onclick=logout()>로그아웃</button>
 <script>
     function cancel(lectureId){
-        fetch('/lectures/student', {
+        fetch('/lectures/student?lectureId=' + lectureId, {
             method: "DELETE",
-            body: JSON.stringify({
-                lectureId: lectureId,
-            }),
             headers: {
                 'Content-Type': 'application/json'
             }
