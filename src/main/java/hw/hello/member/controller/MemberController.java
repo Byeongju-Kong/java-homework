@@ -46,4 +46,9 @@ public class MemberController {
         model.addAttribute("memberInfo", memberInfo);
         return "memberModify";
     }
+
+    @GetMapping("/page/members")
+    public String getMemberRegisterPage() {
+        return "memberRegister";
+    }
 }

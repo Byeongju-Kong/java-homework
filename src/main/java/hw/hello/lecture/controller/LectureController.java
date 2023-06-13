@@ -10,13 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/lectures/detail")
 @RequiredArgsConstructor
 public class LectureController {
 
     private final LectureService lectureService;
 
-    @GetMapping()
+    @GetMapping("/page/lectures-register")
+    public String getLectureRegisterPage() {
+        return "lectureRegister";
+    }
+
+    @GetMapping("/page/lectures")
+    public String getLecturePage() {
+        return "lectures";
+    }
+
+    @GetMapping("/page/lectures/professor")
+    public String getMyLectures() {
+        return "professorLectures";
+    }
+
+    @GetMapping("/lectures/detail")
     public String getLectureDetail(Model model, @RequestParam Long id) {
         LectureInfoResponse lecture = lectureService.findLecture(id);
         model.addAttribute("lecture", lecture);
