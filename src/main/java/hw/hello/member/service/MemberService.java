@@ -83,6 +83,9 @@ public class MemberService {
     public void modifyMember(Long memberId, MemberModifyRequest memberModifyRequest) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(NotFoundException::member);
+        if (memberRepository.existsByPhoneNumber(memberModifyRequest.getPhoneNumber())) {
+            throw new IllegalArgumentException("이미 등록된 회원의 전화번호입니다.");
+        }
         member.modify(memberModifyRequest.getPassword(), memberModifyRequest.getPhoneNumber());
     }
 }
