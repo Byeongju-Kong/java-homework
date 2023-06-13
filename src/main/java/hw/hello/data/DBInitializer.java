@@ -36,14 +36,20 @@ public class DBInitializer {
                 "공병주", 20172703, "asdf123!!", "010-5590-3624", "STUDENT");
         Member professor1 = Member.newMember(
                 "다니엘", 20170001, "asdf123!!", "010-1111-1111", "PROFESSOR");
+        Member professor2 = Member.newMember(
+                "김철수", 20170002, "asdf123!!", "010-4442-7567", "PROFESSOR");
+        Member professor3 = Member.newMember(
+                "손흥민", 20170003, "asdf123!!", "010-1513-4515", "PROFESSOR");
 
         Lecture lecture1 = new Lecture(null, professor1, "고급자바프로그래밍", 3, null, null);
+        Lecture lecture2 = new Lecture(null, professor2, "놀이행복론", 2, null, null);
+        Lecture lecture3 = new Lecture(null, professor3, "인간관계론", 1, null, null);
 
         MemberLecture memberLecture1 = new MemberLecture(student1, lecture1);
         MemberLecture memberLecture2 = new MemberLecture(student2, lecture1);
 
-        memberRepository.saveAll(List.of(admin, student1, student2, professor1));
-        lectureRepository.saveAll(List.of(lecture1));
+        memberRepository.saveAll(List.of(admin, student1, student2, professor1, professor2, professor3));
+        lectureRepository.saveAll(List.of(lecture1, lecture2, lecture3));
         memberLectureRepository.saveAll(List.of(memberLecture1, memberLecture2));
     }
 }
