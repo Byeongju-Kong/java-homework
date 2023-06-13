@@ -37,7 +37,7 @@ public class DBInitializer {
         Member professor1 = Member.newMember(
                 "다니엘", 20170001, "asdf123!!", "010-1111-1111", "PROFESSOR");
 
-        Lecture lecture1 = new Lecture(null, professor1, "고급자바프로그래밍", 3, null);
+        Lecture lecture1 = new Lecture(null, professor1, "고급자바프로그래밍", 3, null, null);
 
         MemberLecture memberLecture1 = new MemberLecture(student1, lecture1);
         MemberLecture memberLecture2 = new MemberLecture(student2, lecture1);
