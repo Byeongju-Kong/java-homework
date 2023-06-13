@@ -8,6 +8,6 @@ public class GradeController {
 
     @GetMapping("/page/grades")
     public String getMyGrades(){
-        return "grades";
+        return "grade/grades";
     }
 }

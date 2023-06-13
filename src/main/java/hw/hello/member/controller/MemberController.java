@@ -22,14 +22,14 @@ public class MemberController {
     public String getMembers(@Login Long memberId, @RequestParam String role, Model model) {
         List<MemberInfoResponse> members = memberService.findAllByRole(memberId, role);
         model.addAttribute("members", members);
-        return "members";
+        return "member/members";
     }
 
     @GetMapping("/members-list")
     public String getMembers(@Login Long memberId, Model model) {
         List<MemberInfoResponse> members = memberService.findAll(memberId);
         model.addAttribute("members", members);
-        return "members";
+        return "member/members";
     }
 
 
@@ -37,18 +37,18 @@ public class MemberController {
     public String getMyInfo(@Login Long memberId, Model model){
         MemberInfoResponse memberInfo = memberService.findByMemberId(memberId);
         model.addAttribute("memberInfo", memberInfo);
-        return "memberInfo";
+        return "member/memberInfo";
     }
 
     @GetMapping("/members/my-info/modify")
     public String getMyInfoModify(@Login Long memberId, Model model){
         MemberInfoResponse memberInfo = memberService.findByMemberId(memberId);
         model.addAttribute("memberInfo", memberInfo);
-        return "memberModify";
+        return "member/memberModify";
     }
 
     @GetMapping("/page/members")
     public String getMemberRegisterPage() {
-        return "memberRegister";
+        return "member/memberRegister";
     }
 }

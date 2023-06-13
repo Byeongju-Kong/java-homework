@@ -17,23 +17,23 @@ public class LectureController {
 
     @GetMapping("/page/lectures-register")
     public String getLectureRegisterPage() {
-        return "lectureRegister";
+        return "lecture/lectureRegister";
     }
 
     @GetMapping("/page/lectures")
     public String getLecturePage() {
-        return "lectures";
+        return "lecture/lectures";
     }
 
     @GetMapping("/page/lectures/professor")
     public String getMyLectures() {
-        return "professorLectures";
+        return "lecture/professorLectures";
     }
 
     @GetMapping("/lectures/detail")
     public String getLectureDetail(Model model, @RequestParam Long id) {
         LectureInfoResponse lecture = lectureService.findLecture(id);
         model.addAttribute("lecture", lecture);
-        return "processorLectureDetail";
+        return "lecture/processorLectureDetail";
     }
 }
