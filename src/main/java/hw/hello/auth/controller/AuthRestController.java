@@ -5,7 +5,6 @@ import hw.hello.auth.service.AuthService;
 import hw.hello.auth.service.LoginRequest;
 import hw.hello.auth.service.LoginResponse;
 import javax.servlet.http.HttpSession;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

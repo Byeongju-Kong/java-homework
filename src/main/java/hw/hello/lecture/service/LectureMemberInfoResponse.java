@@ -3,10 +3,9 @@ package hw.hello.lecture.service;
 import hw.hello.grade.domain.Grade;
 import hw.hello.lecture.domain.Lecture;
 import hw.hello.member.domain.Member;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.Optional;
 
 @NoArgsConstructor
 @Getter

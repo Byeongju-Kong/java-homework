@@ -1,9 +1,8 @@
 package hw.hello.grade.service;
 
-import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class GradeRegisterRequest {

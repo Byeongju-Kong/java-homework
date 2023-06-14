@@ -2,13 +2,11 @@ package hw.hello.lecture.service;
 
 import hw.hello.grade.domain.Grade;
 import hw.hello.lecture.domain.Lecture;
-import hw.hello.member.domain.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter

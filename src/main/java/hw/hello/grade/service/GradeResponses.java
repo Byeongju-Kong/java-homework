@@ -3,10 +3,9 @@ package hw.hello.grade.service;
 import hw.hello.grade.domain.Grade;
 import hw.hello.lecture.domain.Lecture;
 import java.util.ArrayList;
-import lombok.Getter;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter

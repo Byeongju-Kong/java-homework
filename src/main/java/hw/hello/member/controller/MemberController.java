@@ -4,12 +4,10 @@ import hw.hello.member.service.MemberInfoResponse;
 import hw.hello.member.service.MemberService;
 import hw.hello.web.Login;
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller

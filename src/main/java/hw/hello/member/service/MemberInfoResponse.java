@@ -2,11 +2,10 @@ package hw.hello.member.service;
 
 import hw.hello.member.domain.Member;
 import hw.hello.member.domain.RoleType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
