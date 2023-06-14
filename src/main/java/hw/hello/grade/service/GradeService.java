@@ -38,19 +38,6 @@ public class GradeService {
     }
 
     @Transactional(readOnly = true)
-    public List<GradeResponse> findAllByLectureId(Long memberId, Long lectureId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(NotFoundException::lecture);
-        if (member.isStudent()) {
-            throw new ForbiddenException("학생은 강의별 전체 성적 조회 불가능");
-        }
-        return gradeRepository.findByLectureId(lectureId)
-                .stream()
-                .map(GradeResponse::new)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    @Transactional(readOnly = true)
     public GradeResponses findAllByMemberId(Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(NotFoundException::member);

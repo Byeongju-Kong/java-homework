@@ -1,7 +1,5 @@
-package hw.hello;
+package hw.hello.web;
 
-import hw.hello.web.ArgumentResolver;
-import hw.hello.web.AuthInterceptor;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
